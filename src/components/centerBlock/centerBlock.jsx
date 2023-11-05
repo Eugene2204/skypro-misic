@@ -1,5 +1,6 @@
 import './centerBlock.css';
 import {trackList} from '../trackList/trackList.jsx';
+import React from 'react';
 
 export const centerBlock = () => {
     return (

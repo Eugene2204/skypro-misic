@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './navMenu.css';
+import React from 'react';
 
 export const navMenu = () => {
   
