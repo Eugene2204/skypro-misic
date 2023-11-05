@@ -1,6 +1,6 @@
 import './audioPlayer.css';
 
-const audioPlayer = () => {
+export const audioPlayer = () => {
     return (
 <div className="bar">
           <div className="bar__content">
@@ -89,5 +89,3 @@ const audioPlayer = () => {
         </div>
         );
 };
-
-export default audioPlayer;

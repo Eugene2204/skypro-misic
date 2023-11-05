@@ -1,6 +1,6 @@
 import './trackList.css';
 
-function trackList() {
+export const trackList = () => {
 return (
 <div className="content__playlist playlist">
                 <div className="playlist__item">
@@ -547,5 +547,3 @@ return (
               </div>
       )
  }
-
-export default trackList;

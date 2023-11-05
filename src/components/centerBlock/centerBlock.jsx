@@ -1,7 +1,7 @@
 import './centerBlock.css';
-import trackList from '../trackList/trackList.jsx';
+import {trackList} from '../trackList/trackList.jsx';
 
-function centerBlock() {
+export const centerBlock = () => {
     return (
 <div className="main__centerblock centerblock">
             <div className="centerblock__search search">
@@ -42,5 +42,3 @@ function centerBlock() {
           </div>
     )
 }
-
-export default centerBlock;

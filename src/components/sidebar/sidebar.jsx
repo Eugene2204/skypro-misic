@@ -1,6 +1,6 @@
 import './sidebar.css';
 
-function sidebar() {
+export const sidebar = () => {
     return (
 <div className="main__sidebar sidebar">
             <div className="sidebar__personal">
@@ -45,5 +45,3 @@ function sidebar() {
           </div>
     )
 }
-
-export default sidebar;

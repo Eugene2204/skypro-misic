@@ -1,6 +1,6 @@
 import './signIn.css';
 
-const signIn = () => {
+export const signIn = () => {
     return(
       <div class="wrapper">
         <div class="container-enter">
@@ -35,5 +35,3 @@ const signIn = () => {
       </div>
     )
   }
-  
-  export default signIn;
