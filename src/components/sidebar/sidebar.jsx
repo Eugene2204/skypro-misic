@@ -6,25 +6,16 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
 export const sidebar = () => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
         }, 3000)
     }, [])
     
-      if (isLoading) {
-        let row = []
-        row.push(
-      <div className="sidebar__item">
-                                <Skeleton
-                                    width={250}
-                                    height={150}
-                                    count={3}
-                                />
-      </div>
-    )
-                            
+if (isLoading) {
+        
 return(
   <SkeletonTheme baseColor="#202020"
   highlightColor="#444"><div className="main__sidebar sidebar">
@@ -38,7 +29,13 @@ return(
   </div>
   <div className="sidebar__block">
     <div className="sidebar__list">
-{row}
+    <div className="sidebar__item">
+                                <Skeleton
+                                    width={250}
+                                    height={150}
+                                    count={3}
+                                />
+      </div>
     </div>
     </div>
     </div>
