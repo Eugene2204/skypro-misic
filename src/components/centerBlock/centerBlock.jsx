@@ -1,7 +1,9 @@
 import './centerBlock.css';
-import trackList from '../trackList/trackList.jsx';
+import {trackList} from '../trackList/trackList.jsx';
+import React from 'react';
+import { filterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
 
-function centerBlock() {
+export const centerBlock = () => {
     return (
 <div className="main__centerblock centerblock">
             <div className="centerblock__search search">
@@ -16,16 +18,8 @@ function centerBlock() {
               />
             </div>
             <h2 className="centerblock__h2">Треки</h2>
-            <div className="centerblock__filter filter">
-              <div className="filter__title">Искать по:</div>
-              <div className="filter__button button-author _btn-text">
-                исполнителю
-              </div>
-              <div className="filter__button button-year _btn-text">
-                году выпуска
-              </div>
-              <div className="filter__button button-genre _btn-text">жанру</div>
-            </div>
+            {filterButtons()}
+            
             <div className="centerblock__content">
               <div className="content__title playlist-title">
                 <div className="playlist-title__col col01">Трек</div>
@@ -42,5 +36,3 @@ function centerBlock() {
           </div>
     )
 }
-
-export default centerBlock;

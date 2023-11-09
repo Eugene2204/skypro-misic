@@ -1,0 +1,31 @@
+.popup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    background-color: #313131;
+    color: #fff;
+    max-height: 550px;
+    max-width: 400px;
+    box-sizing: border-box;
+    padding: 34px;
+    border-radius: 12px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    overflow: scroll;
+    margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.popup-list__item {
+    transition: all 0.3s;
+}
+
+.popup-list__item:hover {
+    color: darkviolet;
+    cursor: pointer;
+    text-decoration: underline;
+    
+}
+

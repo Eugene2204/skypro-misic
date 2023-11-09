@@ -1,32 +1,33 @@
 import './signIn.css';
+import React from 'react';
 
-const signIn = () => {
+export const signIn = () => {
     return(
-      <div class="wrapper">
-        <div class="container-enter">
-          <div class="modal__block">
-            <form class="modal__form-login" action="#">
+      <div className="wrapper">
+        <div className="container-enter">
+          <div className="modal__block">
+            <form className="modal__form-login" action="#">
               <a href="../">
-                <div class="modal__logo">
+                <div className="modal__logo">
                   <img src="../img/logo_modal.png" alt="logo" />
                 </div>
               </a>
               <input
-                class="modal__input login"
+                className="modal__input login"
                 type="text"
                 name="login"
                 placeholder="Почта"
               />
               <input
-                class="modal__input password"
+                className="modal__input password"
                 type="password"
                 name="password"
                 placeholder="Пароль"
               />
-              <button class="modal__btn-enter">
+              <button className="modal__btn-enter">
                 <a href="../index.html">Войти</a>
               </button>
-              <button class="modal__btn-signup">
+              <button className="modal__btn-signup">
                 <a href="signup.html">Зарегистрироваться</a>
               </button>
             </form>
@@ -35,5 +36,3 @@ const signIn = () => {
       </div>
     )
   }
-  
-  export default signIn;

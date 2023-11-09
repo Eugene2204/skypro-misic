@@ -1,10 +1,11 @@
 import './App.css';
-import audioPlayer from './components/audioPlayer/audioPlayer.jsx';
-import navMenu from './components/navMenu/navMenu.jsx';
-import centerBlock from './components/centerBlock/centerBlock.jsx';
-import sidebar from './components/sidebar/sidebar.jsx';
+import {audioPlayer} from './components/audioPlayer/audioPlayer.jsx';
+import {navMenu} from './components/navMenu/navMenu.jsx';
+import {centerBlock} from './components/centerBlock/centerBlock.jsx';
+import {sidebar} from './components/sidebar/sidebar.jsx';
+import React from 'react';
 
-function App() {
+export const App = () => {
   return (
     <div className="wrapper">
       <div className="container">
@@ -19,5 +20,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
