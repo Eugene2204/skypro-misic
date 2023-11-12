@@ -47,7 +47,7 @@ export const filterButtons = () => {
              <S.FilterTitle>Искать по:</S.FilterTitle>
              <S.FilterContent className="filter__content">
                 <S.FilterButton
-                    isActive={activeAuthor}
+                    $isActive={activeAuthor}
                     onClick={clickOnAuthorFilter}
                 >
                     исполнителю
@@ -56,7 +56,7 @@ export const filterButtons = () => {
             </S.FilterContent>
             <S.FilterContent className="filter__content">
                 <S.FilterButton
-                    isActive={activeYear}
+                    $isActive={activeYear}
                     onClick={clickOnYearFilter}
                 >
                     году выпуска
@@ -65,7 +65,7 @@ export const filterButtons = () => {
             </S.FilterContent>
             <S.FilterContent className="filter__content">
                 <S.FilterButton
-                   isActive={activeGenre}
+                   $isActive={activeGenre}
                     onClick={clickOnGenreFilter}
                 >
                     жанру

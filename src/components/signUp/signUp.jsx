@@ -1,38 +1,36 @@
-import './signUp.css';
 import React from 'react';
+import * as S from './signUp.slyles.jsx';
 
 export const signUp = () => {
     return(
-      <div className="wrapper">
-        <div className="container-enter">
-          <div className="modal__block">
-            <form className="modal__form-login" action="#">
+      <S.Wrapper>
+        <S.ContainerEnter >
+          <S.ModalBlock>
+            <S.ModalFormLogin action="#">
               <a href="../">
-                <div className="modal__logo">
+                <S.ModalLogo>
                   <img src="../img/logo_modal.png" alt="logo" />
-                </div>
+                </S.ModalLogo>
               </a>
-              <input
-                className="modal__input login"
+              <S.ModalInput
                 type="text"
                 name="login"
                 placeholder="Почта"
               />
-              <input
-                className="modal__input password"
+              <S.ModalInput
                 type="password"
                 name="password"
                 placeholder="Пароль"
               />
-              <button className="modal__btn-enter">
+              <S.ModalBtnEnter>
                 <a href="../index.html">Войти</a>
-              </button>
-              <button className="modal__btn-signup">
+              </S.ModalBtnEnter>
+              <S.ModalBtnEnter>
                 <a href="signup.html">Зарегистрироваться</a>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+              </S.ModalBtnEnter>
+            </S.ModalFormLogin>
+          </S.ModalBlock>
+        </S.ContainerEnter>
+      </S.Wrapper>
     )
   }

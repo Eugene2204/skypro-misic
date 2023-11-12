@@ -1,42 +1,38 @@
-import './signIn.css';
 import React from 'react';
-//import * as S from './sidebar.styles.jsx';
-//import { styled } from 'styled-components';
+import * as S from './signIn.styles.jsx';
 
-
-//const Styled = styled.div``
 export const signIn = () => {
     return(
-      <div className="wrapper">
-        <div className="container-enter">
-          <div className="modal__block">
-            <form className="modal__form-login" action="#">
+      <S.Wrapper>
+        <S.ContainerEnter>
+          <S.ModalBlock>
+            <S.ModalFormLogin action="#">
               <a href="../">
-                <div className="modal__logo">
+                <S.ModalLogo>
                   <img src="../img/logo_modal.png" alt="logo" />
-                </div>
+                </S.ModalLogo>
               </a>
-              <input
-                className="modal__input login"
+              <S.ModalInputLogin
+                className="login"
                 type="text"
                 name="login"
                 placeholder="Почта"
               />
-              <input
-                className="modal__input password"
+              <S.ModalInput
+                className="password"
                 type="password"
                 name="password"
                 placeholder="Пароль"
               />
-              <button className="modal__btn-enter">
+              <S.ModalBtnEnter>
                 <a href="../index.html">Войти</a>
-              </button>
-              <button className="modal__btn-signup">
+              </S.ModalBtnEnter>
+              <S.ModalBtnSignUp>
                 <a href="signup.html">Зарегистрироваться</a>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+              </S.ModalBtnSignUp>
+            </S.ModalFormLogin>
+          </S.ModalBlock>
+        </S.ContainerEnter>
+      </S.Wrapper>
     )
   }
