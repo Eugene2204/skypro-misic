@@ -1,22 +1,27 @@
-import './App.css';
 import {audioPlayer} from './components/audioPlayer/audioPlayer.jsx';
 import {navMenu} from './components/navMenu/navMenu.jsx';
 import {centerBlock} from './components/centerBlock/centerBlock.jsx';
 import {sidebar} from './components/sidebar/sidebar.jsx';
 import React from 'react';
+import { GlobalStyle } from './Global.styles.jsx'
+import * as S from './App.styles.jsx'
 
+//const Styled = styled.div``
 export const App = () => {
   return (
-    <div className="wrapper">
-      <div className="container">
-        <main className="main">
+    <>
+    <GlobalStyle/>
+    <S.Wrapper>
+      <S.Container>
+        <S.Main>
        {navMenu()}
           {centerBlock()}
           {sidebar()}
-        </main>
+        </S.Main>
         {audioPlayer()}
-        <footer className="footer"></footer>
-      </div>
-    </div>
+        <footer></footer>
+      </S.Container>
+    </S.Wrapper>
+    </>
   );
 }

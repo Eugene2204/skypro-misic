@@ -74,6 +74,7 @@ export const BtnPrev = styled.div`
     -ms-flex-align: center;
     align-items: center;
     margin-right: 23px;
+    cursor: pointer;
 `
 
 export const PlayerBtnPrevSvg = styled.svg`
@@ -90,6 +91,7 @@ export const PlayerBtnPlay = styled.div`
     -ms-flex-align: center;
     align-items: center;
     margin-right: 23px;
+    cursor: pointer;
 `
 
 export const PlayerBtnPlaySvg = styled.svg`
@@ -108,6 +110,7 @@ export const PlayerBtnNext = styled.div`
     align-items: center;
     margin-right: 28px;
     fill: #a53939;
+    cursor: pointer;
 `
 
 export const PlayerBtnNextSvg = styled.svg`
@@ -126,6 +129,7 @@ export const PlayerBtnRepeat = styled.div`
     -ms-flex-align: center;
     align-items: center;
     margin-right: 24px;
+    cursor: pointer;
 `
 
 export const PlayerBtnRepeatSvg = styled.svg`
@@ -133,6 +137,7 @@ export const PlayerBtnRepeatSvg = styled.svg`
     height: 12px;
     fill: transparent;
     stroke: #696969;
+    
 `
 
 export const PlayerBtnShuffle = styled.div`
@@ -143,6 +148,7 @@ export const PlayerBtnShuffle = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    cursor: pointer;
 `
 
 export const PlayerBtnShuffleSvg = styled.svg`
@@ -248,6 +254,7 @@ export const TrackPlayLikeDis = styled.div`
 
 export const TrackPlayLike = styled.div`
     padding: 5px;
+    cursor: pointer;
 `
 
 export const TrackPlayLikeSvg = styled.svg`
@@ -260,6 +267,7 @@ export const TrackPlayLikeSvg = styled.svg`
 export const TrackPlayDislike = styled.div`
     padding: 5px;
     margin-left: 28.5px;
+    cursor: pointer;
 `
 
 export const TrackPlayDislikeSvg = styled.svg`
@@ -306,6 +314,7 @@ export const VolumeSvg = styled.svg`
     width: 13px;
     height: 18px;
     fill: transparent;
+    ;
 `
 
 export const VolumeProgress = styled.div`
@@ -314,4 +323,5 @@ export const VolumeProgress = styled.div`
 
 export const VolumeProgressLine = styled.input`
     width: 109px;
+    cursor: pointer;
 `

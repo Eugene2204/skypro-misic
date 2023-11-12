@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './audioPlayer.styles';
+import { GlobalStyle } from '../../Global.styles.jsx'
 
 export const audioPlayer = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -13,33 +14,35 @@ export const audioPlayer = () => {
     }, [])
 
     return (
+<>
+<GlobalStyle />
 <S.Bar>
           <S.BarContent>
             <S.BarPlayerProgress></S.BarPlayerProgress>
             <S.BarPlayerBlock>
               <S.BarPlayer>
                 <S.PlayerControls>
-                  <S.BtnPrev className="_btn">
+                  <S.BtnPrev>
                     <S.PlayerBtnPrevSvg alt="prev">
                       <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                     </S.PlayerBtnPrevSvg>
                   </S.BtnPrev>
-                  <S.PlayerBtnPlay className="_btn">
+                  <S.PlayerBtnPlay>
                     <S.PlayerBtnPlaySvg alt="play">
                       <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                     </S.PlayerBtnPlaySvg>
                   </S.PlayerBtnPlay>
-                  <S.PlayerBtnNext className="_btn">
+                  <S.PlayerBtnNext>
                     <S.PlayerBtnNextSvg alt="next">
                       <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                     </S.PlayerBtnNextSvg>
                   </S.PlayerBtnNext>
-                  <S.PlayerBtnRepeat className="_btn-icon">
+                  <S.PlayerBtnRepeat>
                     <S.PlayerBtnRepeatSvg alt="repeat">
                       <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                     </S.PlayerBtnRepeatSvg>
                   </S.PlayerBtnRepeat>
-                  <S.PlayerBtnShuffle className="_btn-icon">
+                  <S.PlayerBtnShuffle>
                     <S.PlayerBtnShuffleSvg alt="shuffle">
                       <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerBtnShuffleSvg>
@@ -88,12 +91,12 @@ export const audioPlayer = () => {
                   </S.TrackPlayContain>
 
                   <S.TrackPlayLikeDis>
-                    <S.TrackPlayLike className="_btn-icon">
+                    <S.TrackPlayLike>
                       <S.TrackPlayLikeSvg alt="like">
                         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </S.TrackPlayLikeSvg>
                     </S.TrackPlayLike>
-                    <S.TrackPlayDislike className="_btn-icon">
+                    <S.TrackPlayDislike>
                       <S.TrackPlayDislikeSvg alt="dislike">
                         <use
                           xlinkHref="img/icon/sprite.svg#icon-dislike"
@@ -103,16 +106,15 @@ export const audioPlayer = () => {
                   </S.TrackPlayLikeDis>
                 </S.PlayerTrackPlay>
               </S.BarPlayer>
-              <S.BarVolumeBlock className="volume">
+              <S.BarVolumeBlock>
                 <S.VolumeContent>
                   <S.VolumeImage>
                     <S.VolumeSvg alt="volume">
                       <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                     </S.VolumeSvg>
                   </S.VolumeImage>
-                  <S.VolumeProgress className="_btn">
+                  <S.VolumeProgress>
                     <S.VolumeProgressLine
-                      className="_btn"
                       type="range"
                       name="range"
                     />
@@ -122,5 +124,6 @@ export const audioPlayer = () => {
             </S.BarPlayerBlock>
           </S.BarContent>
         </S.Bar>
+</>
         );
 };

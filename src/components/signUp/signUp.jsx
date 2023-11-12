@@ -1,8 +1,11 @@
 import React from 'react';
 import * as S from './signUp.slyles.jsx';
+import { GlobalStyle } from '../../Global.styles.jsx'
 
 export const signUp = () => {
     return(
+    <>
+      <GlobalStyle />
       <S.Wrapper>
         <S.ContainerEnter >
           <S.ModalBlock>
@@ -32,5 +35,6 @@ export const signUp = () => {
           </S.ModalBlock>
         </S.ContainerEnter>
       </S.Wrapper>
+    </>
     )
   }
