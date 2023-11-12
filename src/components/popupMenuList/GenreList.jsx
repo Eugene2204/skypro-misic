@@ -1,13 +1,14 @@
 import React from 'react';
+import * as S from './authorList.styles.jsx'
 
 export const GenreList = () => {
     return (
-        <ul className="popup-list">
-            <li className="popup-list__item">Рок</li>
-            <li className="popup-list__item">Хип-хоп</li>
-            <li className="popup-list__item">Поп-музыка</li>
-            <li className="popup-list__item">Техно</li>
-            <li className="popup-list__item">Инди</li>
-        </ul>
+        <S.PopupList>
+            <S.PopupItem>Рок</S.PopupItem>
+            <S.PopupItem>Хип-хоп</S.PopupItem>
+            <S.PopupItem>Поп-музыка</S.PopupItem>
+            <S.PopupItem>Техно</S.PopupItem>
+            <S.PopupItem>Инди</S.PopupItem>
+        </S.PopupList>
     )
 }

@@ -1,9 +1,9 @@
-import './popupMenuButtons.css';
 import { useState } from 'react';
 import { authorList } from '../popupMenuList/AuthorList.jsx';
 import { YearList } from '../popupMenuList/YearList.jsx';
 import { GenreList } from '../popupMenuList/GenreList.jsx';
 import React from 'react';
+import * as S from './popupMenuButtons.styles.jsx';
 
 export const filterButtons = () => {
     const [activeAuthor, setActiveAuthor] = useState(false)
@@ -43,41 +43,35 @@ export const filterButtons = () => {
     }
 
     return (
-        <div className="centerblock__filter filter">
-             <div className="filter__title">Искать по:</div>
-             <div className="filter__content">
-                <div
-                    className={`filter__button button-author _btn-text ${
-                        activeAuthor ? 'active margin' : ''
-                    }`}
+        <S.CenterblockFilter>
+             <S.FilterTitle>Искать по:</S.FilterTitle>
+             <S.FilterContent className="filter__content">
+                <S.FilterButton
+                    isActive={activeAuthor}
                     onClick={clickOnAuthorFilter}
                 >
                     исполнителю
-                </div>
+                </S.FilterButton>
                 {visibleAuthor && authorList()}
-            </div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-year _btn-text ${
-                        activeYear ? 'active' : ''
-                    }`}
+            </S.FilterContent>
+            <S.FilterContent className="filter__content">
+                <S.FilterButton
+                    isActive={activeYear}
                     onClick={clickOnYearFilter}
                 >
                     году выпуска
-                </div>
+                </S.FilterButton>
                 {visibleYear && YearList()}
-            </div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-genre _btn-text ${
-                        activeGenre ? 'active' : ''
-                    }`}
+            </S.FilterContent>
+            <S.FilterContent className="filter__content">
+                <S.FilterButton
+                   isActive={activeGenre}
                     onClick={clickOnGenreFilter}
                 >
                     жанру
-                </div>
+                </S.FilterButton>
                 {visibleGenre && GenreList()}
-            </div>
-        </div>
+            </S.FilterContent>
+        </S.CenterblockFilter>
     )
 }

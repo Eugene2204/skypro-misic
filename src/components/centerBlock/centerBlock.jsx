@@ -1,38 +1,37 @@
-import './centerBlock.css';
 import {trackList} from '../trackList/trackList.jsx';
 import React from 'react';
 import { filterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
+import * as S from './centerBlock.styles.jsx';
 
 export const centerBlock = () => {
     return (
-<div className="main__centerblock centerblock">
-            <div className="centerblock__search search">
-              <svg className="search__svg">
+<S.MainCenterBlock>
+            <S.CenterblockSearch>
+              <S.SearchSvg>
                 <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-              </svg>
-              <input
-                className="search__text"
+              </S.SearchSvg>
+              <S.SearchText
                 type="search"
                 placeholder="Поиск"
                 name="search"
               />
-            </div>
-            <h2 className="centerblock__h2">Треки</h2>
+            </S.CenterblockSearch>
+            <S.CenterblockH2>Треки</S.CenterblockH2>
             {filterButtons()}
             
-            <div className="centerblock__content">
-              <div className="content__title playlist-title">
-                <div className="playlist-title__col col01">Трек</div>
-                <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-                <div className="playlist-title__col col03">АЛЬБОМ</div>
-                <div className="playlist-title__col col04">
-                  <svg className="playlist-title__svg" alt="time">
+            <S.CenterblockContent>
+              <S.ContentTitle className="playlist-title">
+                <S.PlayListTitleCol1>Трек</S.PlayListTitleCol1>
+                <S.PlayListTitleCol2>ИСПОЛНИТЕЛЬ</S.PlayListTitleCol2>
+                <S.PlayListTitleCol3>АЛЬБОМ</S.PlayListTitleCol3>
+                <S.PlayListTitleCol4>
+                  <S.PlayListTitleSvg alt="time">
                     <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-                  </svg>
-                </div>
-              </div>
+                  </S.PlayListTitleSvg>
+                </S.PlayListTitleCol4>
+              </S.ContentTitle>
             {trackList()}
-            </div>
-          </div>
+            </S.CenterblockContent>
+          </S.MainCenterBlock>
     )
 }

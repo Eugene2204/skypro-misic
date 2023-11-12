@@ -1,14 +1,15 @@
 import React from 'react';
+import * as S from './authorList.styles.jsx'
 
 export const YearList = () => {
     return (
-        <ul className="popup-list">
-            <li className="popup-list__item">1991</li>
-            <li className="popup-list__item">1992</li>
-            <li className="popup-list__item">1993</li>
-            <li className="popup-list__item">1994</li>
-            <li className="popup-list__item">1995</li>
-            <li className="popup-list__item">1996</li>
-        </ul>
+        <S.PopupList>
+            <S.PopupItem>1991</S.PopupItem>
+            <S.PopupItem>1992</S.PopupItem>
+            <S.PopupItem>1993</S.PopupItem>
+            <S.PopupItem>1994</S.PopupItem>
+            <S.PopupItem>1995</S.PopupItem>
+            <S.PopupItem>1996</S.PopupItem>
+        </S.PopupList>
     )
 }

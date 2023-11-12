@@ -1,4 +1,6 @@
-.popup-list {
+import { styled } from 'styled-components';
+
+export const PopupList = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 28px;
@@ -15,16 +17,13 @@
     overflow: scroll;
     margin-top: 10px;
     overflow-x: hidden;
-}
+`
 
-.popup-list__item {
+export const PopupItem = styled.li`
     transition: all 0.3s;
-}
-
-.popup-list__item:hover {
+&:hover {
     color: blueviolet;
     cursor: pointer;
-    text-decoration: underline;
-    
+    text-decoration: underline; 
 }
-
+`
