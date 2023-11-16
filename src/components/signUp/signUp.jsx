@@ -1,6 +1,6 @@
 import React from 'react';
-import * as S from './signUp.slyles.jsx';
-import { GlobalStyle } from '../../Global.styles.jsx'
+import * as S from './signUp.slyles.js';
+import { GlobalStyle } from '../../Global.styles.js'
 
 export const signUp = () => {
     return(

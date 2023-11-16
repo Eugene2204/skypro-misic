@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { authorList } from '../popupMenuList/AuthorList.jsx';
+import { AuthorList } from '../popupMenuList/AuthorList.jsx';
 import { YearList } from '../popupMenuList/YearList.jsx';
 import { GenreList } from '../popupMenuList/GenreList.jsx';
 import React from 'react';
-import * as S from './popupMenuButtons.styles.jsx';
+import * as S from './popupMenuButtons.styles.js';
 
-export const filterButtons = () => {
+export const FilterButtons = () => {
     const [activeAuthor, setActiveAuthor] = useState(false)
     const [activeYear, setActiveYear] = useState(false)
     const [activeGenre, setActiveGenre] = useState(false)
@@ -52,7 +52,7 @@ export const filterButtons = () => {
                 >
                     исполнителю
                 </S.FilterButton>
-                {visibleAuthor && authorList()}
+                {visibleAuthor && <AuthorList />}
             </S.FilterContent>
             <S.FilterContent className="filter__content">
                 <S.FilterButton
@@ -61,7 +61,7 @@ export const filterButtons = () => {
                 >
                     году выпуска
                 </S.FilterButton>
-                {visibleYear && YearList()}
+                {visibleYear && <YearList />}
             </S.FilterContent>
             <S.FilterContent className="filter__content">
                 <S.FilterButton
@@ -70,7 +70,7 @@ export const filterButtons = () => {
                 >
                     жанру
                 </S.FilterButton>
-                {visibleGenre && GenreList()}
+                {visibleGenre && <GenreList />}
             </S.FilterContent>
         </S.CenterblockFilter>
     )

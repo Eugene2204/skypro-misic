@@ -2,10 +2,9 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import * as S from './audioPlayer.styles';
-import { GlobalStyle } from '../../Global.styles.jsx'
+import * as S from './audioPlayer.styles.js';
 
-export const audioPlayer = () => {
+export const AudioPlayer = () => {
   const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         setTimeout(() => {
@@ -14,8 +13,6 @@ export const audioPlayer = () => {
     }, [])
 
     return (
-<>
-<GlobalStyle />
 <S.Bar>
           <S.BarContent>
             <S.BarPlayerProgress></S.BarPlayerProgress>
@@ -124,6 +121,5 @@ export const audioPlayer = () => {
             </S.BarPlayerBlock>
           </S.BarContent>
         </S.Bar>
-</>
         );
 };

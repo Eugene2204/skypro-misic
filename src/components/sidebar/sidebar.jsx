@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import * as S from './sidebar.styles.jsx';
+import * as S from './sidebar.styles.js';
 
-export const sidebar = () => {
+export const Sidebar = () => {
   const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

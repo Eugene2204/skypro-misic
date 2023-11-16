@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {App} from './App.jsx';
-import { IndexStyles } from './index.styles.jsx'
+import { IndexStyles } from './index.styles.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

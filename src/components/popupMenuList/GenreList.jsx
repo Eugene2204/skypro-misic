@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './authorList.styles.jsx'
+import * as S from './authorList.styles.js'
 
 export const GenreList = () => {
     return (

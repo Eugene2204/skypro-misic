@@ -1,7 +1,7 @@
 import React from 'react';
-import * as S from './authorList.styles.jsx'
+import * as S from './authorList.styles.js'
 
-export const authorList = () => {
+export const AuthorList = () => {
     return (
         <S.PopupList>
             <S.PopupItem>Nero</S.PopupItem>

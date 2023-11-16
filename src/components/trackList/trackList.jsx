@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import * as S from './trackList.styles.jsx';
+import * as S from './trackList.styles.js';
 
 export const trackList = () => {
 

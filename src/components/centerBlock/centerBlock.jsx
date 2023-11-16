@@ -1,9 +1,9 @@
 import {trackList} from '../trackList/trackList.jsx';
 import React from 'react';
-import { filterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
-import * as S from './centerBlock.styles.jsx';
+import { FilterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
+import * as S from './centerBlock.styles.js';
 
-export const centerBlock = () => {
+export const Centerblock = () => {
     return (
 <S.MainCenterBlock>
             <S.CenterblockSearch>
@@ -17,7 +17,7 @@ export const centerBlock = () => {
               />
             </S.CenterblockSearch>
             <S.CenterblockH2>Треки</S.CenterblockH2>
-            {filterButtons()}
+            <FilterButtons />
             
             <S.CenterblockContent>
               <S.ContentTitle className="playlist-title">

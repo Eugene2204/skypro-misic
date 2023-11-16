@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import * as S from './navMenu.styles';
+import * as S from './navMenu.styles.js';
 import React from 'react';
 
-export const navMenu = () => {
+export const NavMenu = () => {
   
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
