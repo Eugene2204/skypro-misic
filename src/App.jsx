@@ -1,10 +1,7 @@
-import { AudioPlayer } from './components/audioPlayer/audioPlayer.jsx';
-import {NavMenu} from './components/navMenu/NavMenu.jsx';
-import {Centerblock} from './components/centerBlock/centerBlock.jsx';
-import {Sidebar} from './components/sidebar/sidebar.jsx';
 import React from 'react';
-import { GlobalStyle } from './components/Global.styles/Global.styles.js'
-import * as S from './App.styles.js'
+import { GlobalStyle } from './components/Global.styles/Global.styles.js';
+import * as S from './App.styles.js';
+import { AppRoutes } from './routes.jsx'
 
 export const App = () => {
   return (
@@ -12,13 +9,7 @@ export const App = () => {
     <GlobalStyle />
     <S.Wrapper>
       <S.Container>
-        <S.Main>
-       <NavMenu />
-          <Centerblock />
-          <Sidebar />
-        </S.Main>
-        <AudioPlayer />
-        <footer></footer>
+         <AppRoutes user={localStorage.getItem('user')} />
       </S.Container>
     </S.Wrapper>
     </>

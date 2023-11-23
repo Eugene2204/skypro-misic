@@ -1,4 +1,4 @@
-import {trackList} from '../trackList/trackList.jsx';
+import { TrackList } from '../trackList/TrackList.jsx';
 import React from 'react';
 import { FilterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
 import * as S from './centerBlock.styles.js';
@@ -13,12 +13,10 @@ export const Centerblock = () => {
               <S.SearchText
                 type="search"
                 placeholder="Поиск"
-                name="search"
-              />
+                name="search"/>
             </S.CenterblockSearch>
             <S.CenterblockH2>Треки</S.CenterblockH2>
             <FilterButtons />
-            
             <S.CenterblockContent>
               <S.ContentTitle className="playlist-title">
                 <S.PlayListTitleCol1>Трек</S.PlayListTitleCol1>
@@ -30,7 +28,7 @@ export const Centerblock = () => {
                   </S.PlayListTitleSvg>
                 </S.PlayListTitleCol4>
               </S.ContentTitle>
-            {trackList()}
+            <TrackList />
             </S.CenterblockContent>
           </S.MainCenterBlock>
     )

@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './trackList.styles.js';
 
-export const trackList = () => {
+export const TrackList = () => {
 
   const [isLoading, setIsLoading] = useState(true)
 

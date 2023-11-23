@@ -4,6 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import * as S from './sidebar.styles.js';
+import { Categories } from '../../constant.jsx';
 
 export const Sidebar = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -54,30 +55,18 @@ return (
             </S.SidebarPersonal>
             <S.SidebarBlock>
               <S.SidebarList>
-                <S.SidebarItem>
-                  <S.SidebarLink href="#">
+              {Categories.map((category) => {
+                        return (
+                <S.SidebarItem key={category.id}>
+                  <S.SidebarLink  id={category.id}
+                                        to={`/category/${category.id}`}>
                     <S.SidebarImg
-                      src="img/playlist01.png"
-                      alt="day's playlist"
-                    />
+                      src={category.img}
+                      alt={category.alt}/>
                   </S.SidebarLink>
                 </S.SidebarItem>
-                <S.SidebarItem>
-                  <S.SidebarLink href="#">
-                    <S.SidebarImg
-                      src="img/playlist02.png"
-                      alt="day's playlist"
-                    />
-                  </S.SidebarLink>
-                </S.SidebarItem>
-                <S.SidebarItem>
-                  <S.SidebarLink href="#">
-                    <S.SidebarImg
-                      src="img/playlist03.png"
-                      alt="day's playlist"
-                    />
-                  </S.SidebarLink>
-                </S.SidebarItem>
+                )
+                })}
               </S.SidebarList>
             </S.SidebarBlock>
           </S.MainSidebar>

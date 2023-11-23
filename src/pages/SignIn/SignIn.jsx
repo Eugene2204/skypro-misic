@@ -1,8 +1,14 @@
 import React from 'react';
 import * as S from './signIn.styles.js';
-import { GlobalStyle } from '../../Global.styles.js'
+import { GlobalStyle } from '../../components/Global.styles/Global.styles.js';
+import { useNavigate } from 'react-router-dom';
 
-export const signIn = () => {
+export const Login = () => {
+  const navigate = useNavigate()
+  const onClick = () => {
+      localStorage.setItem('user', 'token')
+      navigate('/')
+    }
     return(
     <>
       <GlobalStyle />
@@ -10,11 +16,11 @@ export const signIn = () => {
         <S.ContainerEnter>
           <S.ModalBlock>
             <S.ModalFormLogin action="#">
-              <a href="../">
+            <S.ModalButtonLink to="/">
                 <S.ModalLogo>
                   <img src="../img/logo_modal.png" alt="logo" />
                 </S.ModalLogo>
-              </a>
+            </S.ModalButtonLink>
               <S.ModalInputLogin
                 className="login"
                 type="text"
@@ -27,11 +33,11 @@ export const signIn = () => {
                 name="password"
                 placeholder="Пароль"
               />
-              <S.ModalBtnEnter>
-                <a href="../index.html">Войти</a>
+              <S.ModalBtnEnter onClick={onClick}>
+              <S.ModalButtonLink to="/">Войти</S.ModalButtonLink>
               </S.ModalBtnEnter>
               <S.ModalBtnSignUp>
-                <a href="signup.html">Зарегистрироваться</a>
+              <S.ModalButtonLink to="/SignUp">Зарегистрироваться</S.ModalButtonLink>
               </S.ModalBtnSignUp>
             </S.ModalFormLogin>
           </S.ModalBlock>
