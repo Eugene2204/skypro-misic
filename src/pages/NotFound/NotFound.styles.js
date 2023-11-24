@@ -181,7 +181,7 @@ export const TitelNotfound = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 38px;
+    padding-top: 356px;
 `
 
 export const TitelNotfoundErrorText = styled.h1`

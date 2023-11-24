@@ -25,9 +25,11 @@ export const SignUp = () => {
                 name="password"
                 placeholder="Пароль"
               />
-              <S.ModalBtnEnterLogin>
-              <S.ModalButtonLink to="/login">Войти</S.ModalButtonLink>
-              </S.ModalBtnEnterLogin>
+              <S.ModalInput
+                type="password"
+                name="password"
+                placeholder="Повторите пароль"
+              />
               <S.ModalBtnEnter>
               <S.ModalButtonLink to="/">Зарегистрироваться</S.ModalButtonLink>
               </S.ModalBtnEnter>
