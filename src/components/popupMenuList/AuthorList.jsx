@@ -1,15 +1,20 @@
-import './authorList.css';
 import React from 'react';
+import * as S from './authorList.styles.js';
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
-export const authorList = () => {
+export const AuthorList = () => {
     return (
-        <ul className="popup-list author-list">
-            <li className="popup-list__item">Nero</li>
-            <li className="popup-list__item">Dynoro, Outwork, Mr. Gee</li>
-            <li className="popup-list__item">Ali Bakgor</li>
-            <li className="popup-list__item">Стоункат, Psychopath</li>
-            <li className="popup-list__item">Jaded, Will Clarke, AR/CO</li>
-            <li className="popup-list__item">Blue Foundation, Zeds Dead</li>
-        </ul>
+        <S.PopupList>
+        <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'auto' } }}>
+            <S.BlockScroll>
+            <S.PopupItem>Nero</S.PopupItem>
+            <S.PopupItem>Dynoro, Outwork, Mr. Gee</S.PopupItem>
+            <S.PopupItem>Ali Bakgor</S.PopupItem>
+            <S.PopupItem>Стоункат, Psychopath</S.PopupItem>
+            <S.PopupItem>Jaded, Will Clarke, AR/CO</S.PopupItem>
+            <S.PopupItem>Blue Foundation, Zeds Dead</S.PopupItem>
+            </S.BlockScroll>
+        </OverlayScrollbarsComponent>
+        </S.PopupList>
     )
 }

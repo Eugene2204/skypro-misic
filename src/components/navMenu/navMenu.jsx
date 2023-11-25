@@ -1,38 +1,47 @@
 import { useState } from 'react';
-import './navMenu.css';
+import * as S from './navMenu.styles.js';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const navMenu = () => {
+export const NavMenu = () => {
   
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
+  const navigate = useNavigate()
+  const onClick = () => {
+      const user = localStorage.getItem('user')
+      if (user) {
+          localStorage.removeItem('user')
+      }
+
+      navigate('/login')
+  }
   
     return(
-        <nav className="main__nav nav">
-            <div className="nav__logo logo">
-              <img className="logo__image" src="img/logo.png" alt="logo" />
-            </div>
-            <div className="nav__burger burger" onClick={toggleVisibility}>
-              <span className="burger__line"></span>
-              <span className="burger__line"></span>
-              <span className="burger__line"></span>
-            </div>
+        <S.MainNav>
+            <S.NavLogo>
+              <S.LogoImg className="_btn" src="img/logo.png" alt="logo" />
+            </S.NavLogo>
+            <S.NavBurger className="_btn" onClick={toggleVisibility}>
+              <S.BurgerLine></S.BurgerLine>
+              <S.BurgerLine></S.BurgerLine>
+              <S.BurgerLine></S.BurgerLine>
+            </S.NavBurger>
             {visible && (
-            <div className="nav__menu menu">
-              <ul className="menu__list">
-                <li className="menu__item">
-                  <a href="#" className="menu__link">Главное</a>
-                </li>
-                <li className="menu__item">
-                  <a href="#" className="menu__link">Мой плейлист</a>
-                </li>
-                <li className="menu__item">
-                  <a href="../signin.html" className="menu__link">Войти</a>
-                </li>
-              </ul>
-            </div>
+            <S.NavMenu>
+              <S.MenuList>
+                <S.MenuItem>
+                  <S.MenuLink to="/">Главное</S.MenuLink>
+                </S.MenuItem>
+                <S.MenuItem>
+                  <S.MenuLink to="/favorites">Мой плейлист</S.MenuLink>
+                </S.MenuItem>
+                <S.MenuItem onClick={onClick}>
+                            {localStorage.getItem('user') ? 'Выйти' : 'Войти'}
+                </S.MenuItem>
+              </S.MenuList>
+            </S.NavMenu>
             )}
-          </nav>
-            
+          </S.MainNav>  
     )
 }

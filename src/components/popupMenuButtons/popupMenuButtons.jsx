@@ -1,11 +1,11 @@
-import './popupMenuButtons.css';
 import { useState } from 'react';
-import { authorList } from '../popupMenuList/AuthorList.jsx';
+import { AuthorList } from '../popupMenuList/AuthorList.jsx';
 import { YearList } from '../popupMenuList/YearList.jsx';
 import { GenreList } from '../popupMenuList/GenreList.jsx';
 import React from 'react';
+import * as S from './popupMenuButtons.styles.js';
 
-export const filterButtons = () => {
+export const FilterButtons = () => {
     const [activeAuthor, setActiveAuthor] = useState(false)
     const [activeYear, setActiveYear] = useState(false)
     const [activeGenre, setActiveGenre] = useState(false)
@@ -43,41 +43,35 @@ export const filterButtons = () => {
     }
 
     return (
-        <div className="centerblock__filter filter">
-             <div className="filter__title">Искать по:</div>
-             <div className="filter__content">
-                <div
-                    className={`filter__button button-author _btn-text ${
-                        activeAuthor ? 'active margin' : ''
-                    }`}
+        <S.CenterblockFilter>
+             <S.FilterTitle>Искать по:</S.FilterTitle>
+             <S.FilterContent className="filter__content">
+                <S.FilterButton
+                    $isActive={activeAuthor}
                     onClick={clickOnAuthorFilter}
                 >
                     исполнителю
-                </div>
-                {visibleAuthor && authorList()}
-            </div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-year _btn-text ${
-                        activeYear ? 'active' : ''
-                    }`}
+                </S.FilterButton>
+                {visibleAuthor && <AuthorList />}
+            </S.FilterContent>
+            <S.FilterContent className="filter__content">
+                <S.FilterButton
+                    $isActive={activeYear}
                     onClick={clickOnYearFilter}
                 >
                     году выпуска
-                </div>
-                {visibleYear && YearList()}
-            </div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-genre _btn-text ${
-                        activeGenre ? 'active' : ''
-                    }`}
+                </S.FilterButton>
+                {visibleYear && <YearList />}
+            </S.FilterContent>
+            <S.FilterContent className="filter__content">
+                <S.FilterButton
+                   $isActive={activeGenre}
                     onClick={clickOnGenreFilter}
                 >
                     жанру
-                </div>
-                {visibleGenre && GenreList()}
-            </div>
-        </div>
+                </S.FilterButton>
+                {visibleGenre && <GenreList />}
+            </S.FilterContent>
+        </S.CenterblockFilter>
     )
 }
