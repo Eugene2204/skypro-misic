@@ -1,4 +1,4 @@
-import { TrackList } from '../trackList/TrackList.jsx';
+import { TrackList } from './../TrackList/TrackList.jsx';
 import React from 'react';
 import { FilterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
 import * as S from './centerBlock.styles.js';

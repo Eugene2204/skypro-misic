@@ -1,5 +1,5 @@
 import { AudioPlayer } from '../../components/audioPlayer/audioPlayer.jsx';
-import {NavMenu} from '../../components/navMenu/NavMenu.jsx';
+import {NavMenu} from './../../components/NavMenu/NavMenu.jsx';
 import {Centerblock} from '../../components/centerBlock/centerBlock.jsx';
 import {Sidebar} from '../../components/sidebar/sidebar.jsx';
 import React from 'react';
