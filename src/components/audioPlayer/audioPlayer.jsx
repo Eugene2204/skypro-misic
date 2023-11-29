@@ -1,18 +1,12 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './audioPlayer.styles.js';
 
-export const AudioPlayer = () => {
-  const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 3000)
-    }, [])
+export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
 
     return (
+      isPlayerVisible && (
 <S.Bar>
           <S.BarContent>
             <S.BarPlayerProgress></S.BarPlayerProgress>
@@ -45,7 +39,6 @@ export const AudioPlayer = () => {
                     </S.PlayerBtnShuffleSvg>
                   </S.PlayerBtnShuffle>
                 </S.PlayerControls>
-
                 <S.PlayerTrackPlay>
                   <S.TrackPlayContain>
                     <S.TrackPlayImage>
@@ -58,9 +51,13 @@ export const AudioPlayer = () => {
                                         />
                                     ) : (
                       <S.TrackPlaySvg alt="music">
+                        {activeTrack ? (
+                                                    activeTrack.logo
+                                                ) : (
                         <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                        )}
                       </S.TrackPlaySvg>
-                                    )}
+                                    )}                           
                     </S.TrackPlayImage>
                     <S.TrackPlayAuthor>
                     {isLoading ? (
@@ -71,7 +68,7 @@ export const AudioPlayer = () => {
                                         />
                                     ) : (
                       <S.TrackPlayAuthorLink href="http://"
-                        >Ты та...</S.TrackPlayAuthorLink>
+                        >{activeTrack.name}</S.TrackPlayAuthorLink>
                       )}
                     </S.TrackPlayAuthor>
                     <S.TrackPlayAlbum>
@@ -82,11 +79,10 @@ export const AudioPlayer = () => {
                                             highlightColor="#444"
                                         />
                                     ) : (
-                      <S.TrackPlayAlbumLink href="http://">Баста</S.TrackPlayAlbumLink>
+                      <S.TrackPlayAlbumLink href="http://">{activeTrack.author}</S.TrackPlayAlbumLink>
                                     )}
                     </S.TrackPlayAlbum>
                   </S.TrackPlayContain>
-
                   <S.TrackPlayLikeDis>
                     <S.TrackPlayLike>
                       <S.TrackPlayLikeSvg alt="like">
@@ -121,5 +117,4 @@ export const AudioPlayer = () => {
             </S.BarPlayerBlock>
           </S.BarContent>
         </S.Bar>
-        );
-};
+      ))};
