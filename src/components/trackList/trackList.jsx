@@ -1,13 +1,15 @@
 import React from 'react';
-import moment from 'moment';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './trackList.styles.js';
+import { ConvertTime } from '../../helpers.jsx';
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 export const TrackList = ({ tracks, isLoading, setIsPlayerVisible, loadingTracksError, setActiveTrack }) => {
 
 return (
   <>
+<OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'auto' } }}>
 <S.ContentPlaylist>
 {loadingTracksError && (
                 <S.LoadingTracksError>
@@ -18,7 +20,7 @@ return (
 {tracks.map((track) => {
                 return (
                 <S.PlaylistItem  key={track.id}
-                        onClick={() => {
+                        onClick={( ) => {
                             setIsPlayerVisible(true)
                             setActiveTrack(track)
                         }}>
@@ -43,7 +45,7 @@ return (
                                 baseColor="#202020"
                                 highlightColor="#444"/>
                             ) : (
-                        <S.TrackTitleLink href="http://">
+                        <S.TrackTitleLink  >
                         {track.name} 
                         <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>
@@ -74,16 +76,17 @@ return (
                       <S.TrackTimeSvg alt="time">
                         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </S.TrackTimeSvg>
-                      <S.TrackTimeText> {moment(
-                                                track.duration_in_seconds * 1000,
-                                            ).format('m:ss')}</S.TrackTimeText>
+                      <S.TrackTimeText> {ConvertTime(
+                                                track.duration_in_seconds,
+                                            )}
+                      </S.TrackTimeText>
                     </div>
                   </S.PlaylistTrack>
                 </S.PlaylistItem>
-                
                )
               })}
               </S.ContentPlaylist>
+              </OverlayScrollbarsComponent>
               </>
       )
  }

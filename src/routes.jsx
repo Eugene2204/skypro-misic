@@ -9,7 +9,7 @@ import { Protection } from './components/Protection/Protection.jsx';
 import React from 'react';
 
 export const AppRoutes = ({ user, tracks, setTracks, isLoading, setIsLoading, isPlayerVisible, setIsPlayerVisible,
-    loadingTracksError, setActiveTrack}) => {
+    loadingTracksError, setActiveTrack, setIsPlaying, isPlaying, handleStart, handleStop, togglePlay,}) => {
     return(
         <Routes>
             <Route path="/login" element={<Login />}></Route>
@@ -29,6 +29,11 @@ export const AppRoutes = ({ user, tracks, setTracks, isLoading, setIsLoading, is
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setActiveTrack={setActiveTrack}
+                            setIsPlaying={setIsPlaying}
+                            isPlaying={isPlaying}
+                            handleStart={handleStart}
+                            handleStop={handleStop}
+                            togglePlay={togglePlay}
                         />
                     }
                 ></Route>

@@ -2,9 +2,9 @@ import React from 'react';
 import { GlobalStyle } from './components/Global.styles/Global.styles.js';
 import * as S from './App.styles.js';
 import { AppRoutes } from './routes.jsx';
-import { useEffect, useState } from 'react';
 import { getAllTracks } from './Api.jsx';
-import { AudioPlayer } from './components/audioPlayer/audioPlayer.jsx'
+import { AudioPlayer } from './components/audioPlayer/audioPlayer.jsx';
+import { useState, useEffect, useRef } from 'react'
 
 export const App = () => {
 
@@ -25,6 +25,10 @@ export const App = () => {
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
   const [loadingTracksError, setLoadingTracksError] = useState(false);
   const [activeTrack, setActiveTrack] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isLooped, setIsLooped] = useState(false)
+
+  const audioRef = useRef(null)
 
     useEffect(() => {
       getAllTracks()
@@ -36,6 +40,27 @@ export const App = () => {
       })
       .finally(() => setIsLoading(false))
   }, []);
+
+  const handlePlay = () => {
+    audioRef.current.play()
+    setIsPlaying(true)
+}
+
+const handlePause = () => {
+    audioRef.current.pause()
+    setIsPlaying(false)
+}
+
+const togglePlay = isPlaying ? handlePause : handlePlay
+
+const toggleLoop = () => {
+    if (isLooped) {
+        setIsLooped(false)
+    } else {
+        setIsLooped(true)
+    }
+}
+
   return (
   <>
     <GlobalStyle />
@@ -52,8 +77,11 @@ export const App = () => {
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setActiveTrack={setActiveTrack}
+                            setIsPlaying={setIsPlaying}
+                            isPlaying={isPlaying}
+                            togglePlay={togglePlay}
                         />
-                        {AudioPlayer({ isPlayerVisible, isLoading, activeTrack,})}
+                        {AudioPlayer({ isPlaying, setIsPlaying, isPlayerVisible, isLoading, activeTrack,audioRef, togglePlay, isLooped, toggleLoop, })}
                     </>
       </S.Container>
     </S.Wrapper>

@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { styled } from 'styled-components';
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -12,7 +12,7 @@ export const Container = styled.div`
     height: 100vh;
     margin: 0 auto;
     position: relative;
-    background-color: #181818;
+    background-color: #181818;  
 `
 
 export const Main = styled.main`
@@ -26,5 +26,11 @@ export const Main = styled.main`
     flex-wrap: wrap;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: space-between; 
 `
+
+export const AudioHTML = styled.audio`
+    display: none;
+`
+
+

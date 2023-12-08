@@ -3,7 +3,7 @@ import React from 'react';
 import { FilterButtons } from '../popupMenuButtons/popupMenuButtons.jsx';
 import * as S from './centerBlock.styles.js';
 
-export const Centerblock = ( tracks, isLoading, setIsPlayerVisible, loadingTracksError, setActiveTrack) => {
+export const Centerblock = ( tracks, isLoading, setIsPlayerVisible, loadingTracksError, setActiveTrack, setIsPlaying, isPlaying, togglePlay,) => {
      return (
 <S.MainCenterBlock>
             <S.CenterblockSearch>
@@ -33,7 +33,10 @@ export const Centerblock = ( tracks, isLoading, setIsPlayerVisible, loadingTrack
                     isLoading,
                     setIsPlayerVisible,
                     loadingTracksError,
-                    setActiveTrack
+                    setActiveTrack,
+                    setIsPlaying,
+                    isPlaying,
+                    togglePlay,
                 )}
             </S.CenterblockContent>
           </S.MainCenterBlock>
