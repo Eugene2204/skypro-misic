@@ -5,7 +5,7 @@ import * as S from './trackList.styles.js';
 import { ConvertTime } from '../../helpers.jsx';
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
-export const TrackList = ({ tracks, isLoading, setIsPlayerVisible, loadingTracksError, setActiveTrack }) => {
+export const TrackList = ({ tracks, isLoading, setIsPlayerVisible, loadingTracksError, setActiveTrack, }) => {
 
 return (
   <>

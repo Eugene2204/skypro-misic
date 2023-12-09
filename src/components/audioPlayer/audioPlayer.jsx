@@ -9,7 +9,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
 
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
-  const [currentVolume, setCurrentVolume] = useState(0.5)
+  const [currentVolume, setCurrentVolume] = useState(0.1)
 
   const progressBarRef = useRef(null)
   const volumeBarRef = useRef(null)
@@ -52,7 +52,6 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
             <S.BarPlayerProgress  ref={progressBarRef}
                             type="range"
                             min={0}
-                            max={duration}
                             value={currentTime}
                             step={0.01}
                             onChange={() => {
@@ -70,7 +69,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                     </S.PlayerBtnPrevSvg>
                   </S.BtnPrev>
                   <S.PlayerBtnPlay>
-                    <S.PlayerBtnPlaySvg btnPrev={true} onClick={() => togglePlay()} alt="play">
+                    <S.PlayerBtnPlaySvg onClick={() => togglePlay()} alt="play">
                     {isPlaying ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
