@@ -1,4 +1,4 @@
-import {NavMenu} from '../../components/navMenu/navMenuytgh.jsx';
+import {NavMenu} from '../../components/navMenu/NavMenu.jsx';
 import {Centerblock} from '../../components/centerBlock/centerBlock.jsx';
 import {Sidebar} from '../../components/sidebar/sidebar.jsx';
 import React from 'react';
