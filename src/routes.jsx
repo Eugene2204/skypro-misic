@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Login } from './pages/SignIn/SignIn.jsx';
 import { SignUp } from './pages/signUp/SignUp.jsx';
-import { MainPage } from './pages/main/Mainhjkn.jsx';
+import { MainPage } from './pages/main/Main.jsx';
 import { NotFoundPage } from './pages/NotFound/NotFound.jsx';
 import { MyTracksPage } from './pages/myTrack/myTrack.jsx';
 import { PlaylistPage } from './pages/playlistPage/playlistPage.jsx';
