@@ -1,4 +1,17 @@
 import { styled } from 'styled-components';
+import 'overlayscrollbars/overlayscrollbars.css';
+
+export const TrackTime = styled.div`
+    position: absolute;
+    bottom: 85px;
+    right: 15px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: right;
+    color: #fff;
+`
 
 export const ContentPlaylist = styled.div`
     display: -webkit-box;
@@ -8,13 +21,13 @@ export const ContentPlaylist = styled.div`
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    overflow-y: auto;
+    height: 1000px;
+    margin-bottom: 150px;
 `
 
 export const PlaylistItem = styled.div`
     width: 100%;
     display: block;
-    margin-bottom: 12px;
 `
 
 export const PlaylistTrack = styled.div`
@@ -31,6 +44,11 @@ export const PlaylistTrack = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    overflow: scroll;
+    margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-right: 20px;
 `
 
 export const TrackTitle = styled.div`
@@ -45,6 +63,7 @@ export const TrackTitle = styled.div`
     -ms-flex-align: center;
     align-items: center;
     width: 447px;
+    
 `
 
 export const TrackTitleImage = styled.div`
@@ -133,4 +152,14 @@ export const TrackTimeText = styled.span`
     line-height: 24px;
     text-align: right;
     color: #696969;
+`
+
+export const LoadingTracksError = styled.p`
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 64px;
+    text-align: center;
+    color: red;
+    padding: 20px;
 `
