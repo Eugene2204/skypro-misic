@@ -14,7 +14,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
   const progressBarRef = useRef(null)
   const volumeBarRef = useRef(null)
   const duration = audioRef.current ? audioRef.current.duration : 0
-
+  
   const handleLoop = () => {
       audioRef.current.loop = true
       setIsLooped(true)
