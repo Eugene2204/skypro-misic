@@ -1,5 +1,5 @@
 import {NavMenu} from '../../components/navMenu/NavMenu.jsx';
-import {Centerblock} from '../../components/centerBlock/CenterBlock.jsx';
+import {Centerblock} from '../../components/centerBlock/CenterBlocks.jsx';
 import {Sidebar} from '../../components/sidebar/sidebar.jsx';
 import React from 'react';
 import { GlobalStyle } from '../../components/Global.styles/Global.styles.js';

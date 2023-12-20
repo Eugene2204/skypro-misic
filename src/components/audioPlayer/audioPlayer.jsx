@@ -14,7 +14,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
   const progressBarRef = useRef(null)
   const volumeBarRef = useRef(null)
   const duration = audioRef.current ? audioRef.current.duration : 0
-
+  
   const handleLoop = () => {
       audioRef.current.loop = true
       setIsLooped(true)
@@ -31,7 +31,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
       isPlayerVisible && (
         <>
          <audio
-                   controls 
+                   controls="controls"
                     src={activeTrack.track_file}
                     ref={audioRef}
                     autoPlay={true}
@@ -40,26 +40,20 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                     }}
                 ></audio>
                 <S.TrackTime>
-                    {duration &&
-                        ConvertTime(currentTime) +
-                            ' ' +
-                            '/' +
-                            ' ' +
-                            ConvertTime(duration)}
+                  {duration && ConvertTime(currentTime)} / {duration && ConvertTime(duration)}
                 </S.TrackTime>
 <S.Bar>
           <S.BarContent>
-            <S.BarPlayerProgress  ref={progressBarRef}
-                            type="range"
-                            min={0}
-                            value={currentTime}
-                            step={0.01}
-                            onChange={() => {
-                                setCurrentTime(progressBarRef.current.value)
-                                audioRef.current.currentTime =
-                                    progressBarRef.current.value
-                            }}
-                            $color="#ff0000" />
+           <S.BarPlayerProgress  
+              ref={progressBarRef}
+              type="range"
+              min={0}
+              value={currentTime}
+              step={0.01}
+              onChange={(a) => {
+                audioRef.current.currentTime = a.target.value;
+              }}
+              $color="#ff0000" />
             <S.BarPlayerBlock>
               <S.BarPlayer>
                 <S.PlayerControls>

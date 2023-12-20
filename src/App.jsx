@@ -5,6 +5,7 @@ import { AppRoutes } from './routes.jsx';
 import { getAllTracks } from './Api.jsx';
 import { AudioPlayer } from './components/audioPlayer/audioPlayer.jsx';
 import { useState, useEffect, useRef } from 'react'
+import { UserContext } from './Authorization.jsx'
 
 export const App = () => {
 
@@ -19,14 +20,17 @@ export const App = () => {
     { id: 8, name: 8, author: 8, album: 8, duration_in_seconds: 8 },
     { id: 9, name: 9, author: 9, album: 9, duration_in_seconds: 9 },
     { id: 10, name: 10, author: 10, album: 10, duration_in_seconds: 10 },
+    
 ]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
   const [loadingTracksError, setLoadingTracksError] = useState(false);
   const [activeTrack, setActiveTrack] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isLooped, setIsLooped] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [userData, setUserData] = useState(
+    JSON.parse(JSON.stringify(localStorage.getItem('user'))) ?? 'Не авторизован',
+)
 
   const audioRef = useRef(null)
 
@@ -41,11 +45,13 @@ export const App = () => {
       .finally(() => setIsLoading(false))
   }, []);
 
+  
+
+
   const handlePlay = () => {
     audioRef.current.play()
     setIsPlaying(true)
 }
-
 const handlePause = () => {
     audioRef.current.pause()
     setIsPlaying(false)
@@ -53,17 +59,16 @@ const handlePause = () => {
 
 const togglePlay = isPlaying ? handlePause : handlePlay
 
-const toggleLoop = () => {
-    if (isLooped) {
-        setIsLooped(false)
-    } else {
-        setIsLooped(true)
-    }
-}
+useEffect(() => {
+  if (audioRef.current) {
+    handlePlay()
+  }
+}, [activeTrack])
 
   return (
   <>
     <GlobalStyle />
+    <UserContext.Provider value={[userData, setUserData]}>
     <S.Wrapper>
       <S.Container>
       <>
@@ -81,10 +86,11 @@ const toggleLoop = () => {
                             isPlaying={isPlaying}
                             togglePlay={togglePlay}
                         />
-                        {AudioPlayer({ isPlaying, setIsPlaying, isPlayerVisible, isLoading, activeTrack,audioRef, togglePlay, isLooped, toggleLoop, })}
+                        {AudioPlayer({ isPlaying, setIsPlaying, isPlayerVisible, isLoading, activeTrack,audioRef, togglePlay, })}
                     </>
       </S.Container>
     </S.Wrapper>
+    </UserContext.Provider>
     </>
   )
 }
