@@ -4,8 +4,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './trackList.styles.js';
 import { ConvertTime } from '../../helpers.jsx';
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveTrack } from '../../store/slices.jsx';
 
-export const TrackList = ({ tracks, isLoading, setIsPlayerVisible, loadingTracksError, setActiveTrack, }) => {
+export const TrackList = ({ isLoading, setIsPlayerVisible, loadingTracksError, }) => {
+
+  const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const tracks = useSelector((state) => state.tracks.tracks)
+  const dispatch = useDispatch()
 
 return (
   <>
@@ -22,7 +28,7 @@ return (
                 <S.PlaylistItem  key={track.id}
                         onClick={( ) => {
                             setIsPlayerVisible(true)
-                            setActiveTrack(track)
+                            dispatch(setActiveTrack({ track }))
                         }}>
                   <S.PlaylistTrack>
                     <S.TrackTitle>
@@ -33,9 +39,11 @@ return (
                       height={55}
                       baseColor="#202020"
                       highlightColor="#444"/>
+                      ) : activeTrack.id === track.id ? (
+                        <S.ActiveTrack />
               ) : (     
                         <S.TrackTitleSvg alt="music">
-                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                           <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </S.TrackTitleSvg>
                           )}  
                       </S.TrackTitleImage>
