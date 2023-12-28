@@ -4,16 +4,21 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './audioPlayer.styles.js';
 import { useState,  useRef } from 'react';
 import { ConvertTime, FunctionMissing } from '../../helpers.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { playNextTrack, playPrevTrack, setIsShuffled } from '../../store/slices.jsx';
 
-export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef, togglePlay, isPlaying, }) => {
+export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, isPlaying, }) => {
 
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [currentVolume, setCurrentVolume] = useState(0.1)
 
+  const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const isShuffled = useSelector((state) => state.tracks.isShuffled)
+  const dispatch = useDispatch()
   const progressBarRef = useRef(null)
   const volumeBarRef = useRef(null)
-  const duration = audioRef.current ? audioRef.current.duration : 0
+  const duration = audioRef.current ? audioRef.current.duration : 0;
   
   const handleLoop = () => {
       audioRef.current.loop = true
@@ -35,6 +40,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                     src={activeTrack.track_file}
                     ref={audioRef}
                     autoPlay={true}
+                    onEnded={() => dispatch(playNextTrack())}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
                     }}
@@ -58,7 +64,8 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
               <S.BarPlayer>
                 <S.PlayerControls>
                   <S.BtnPrev>
-                    <S.PlayerBtnPrevSvg onClick={FunctionMissing} alt="prev">
+                    <S.PlayerBtnPrevSvg alt="prev" onClick={() =>
+                                                dispatch(playPrevTrack())}>
                       <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                     </S.PlayerBtnPrevSvg>
                   </S.BtnPrev>
@@ -92,7 +99,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                     </S.PlayerBtnPlaySvg>
                   </S.PlayerBtnPlay>
                   <S.PlayerBtnNext>
-                    <S.PlayerBtnNextSvg onClick={FunctionMissing} alt="next">
+                    <S.PlayerBtnNextSvg   onClick={() => dispatch(playNextTrack())} alt="next">
                       <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                     </S.PlayerBtnNextSvg>
                   </S.PlayerBtnNext>
@@ -138,7 +145,8 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                     </S.PlayerBtnRepeatSvg>
                   </S.PlayerBtnRepeat>
                   <S.PlayerBtnShuffle>
-                    <S.PlayerBtnShuffleSvg onClick={FunctionMissing} alt="shuffle">
+                    <S.PlayerBtnShuffleSvg  $isshuffled={isShuffled}
+                                            onClick={() => { dispatch(setIsShuffled())}} alt="shuffle">
                       <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerBtnShuffleSvg>
                   </S.PlayerBtnShuffle>
@@ -155,8 +163,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                                         />
                                     ) : (
                       <S.TrackPlaySvg alt="music">
-                        {activeTrack ? (
-                                                    activeTrack.logo
+                        {activeTrack ? ( activeTrack.logo
                                                 ) : (
                         <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         )}
@@ -171,9 +178,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                                             highlightColor="#444"
                                         />
                                     ) : (
-                      <S.TrackPlayAuthorLink href="http://"
-                        >{activeTrack.name}</S.TrackPlayAuthorLink>
-                      )}
+                      <S.TrackPlayAuthorLink href="http://">{activeTrack.name}</S.TrackPlayAuthorLink>)}
                     </S.TrackPlayAuthor>
                     <S.TrackPlayAlbum>
                       {isLoading ? (
@@ -183,8 +188,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                                             highlightColor="#444"
                                         />
                                     ) : (
-                      <S.TrackPlayAlbumLink href="http://">{activeTrack.author}</S.TrackPlayAlbumLink>
-                                    )}
+                      <S.TrackPlayAlbumLink href="http://">{activeTrack.author}</S.TrackPlayAlbumLink>)}
                     </S.TrackPlayAlbum>
                   </S.TrackPlayContain>
                   <S.TrackPlayLikeDis>
@@ -195,9 +199,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                     </S.TrackPlayLike>
                     <S.TrackPlayDislike>
                       <S.TrackPlayDislikeSvg onClick={FunctionMissing} alt="dislike">
-                        <use
-                          xlinkHref="img/icon/sprite.svg#icon-dislike"
-                        ></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                       </S.TrackPlayDislikeSvg>
                     </S.TrackPlayDislike>
                   </S.TrackPlayLikeDis>
@@ -219,13 +221,8 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack, audioRef,
                        min={0}
                        max={1}
                        step={0.01}
-                       onChange={() => {
-                           setCurrentVolume(
-                               audioRef.current.volume,
-                           )
-                           audioRef.current.volume =
-                               volumeBarRef.current.value
-                       }}
+                       onChange={() => { setCurrentVolume( audioRef.current.volume, )
+                           audioRef.current.volume = volumeBarRef.current.value }}
                     />
                   </S.VolumeProgress>
                 </S.VolumeContent>

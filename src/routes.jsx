@@ -8,8 +8,8 @@ import { PlaylistPage } from './pages/playlistPage/playlistPage.jsx';
 import { Protection } from './components/Protection/Protection.jsx';
 import React from 'react';
 
-export const AppRoutes = ({ user, tracks, setTracks, isLoading, setIsLoading, isPlayerVisible, setIsPlayerVisible,
-    loadingTracksError, setActiveTrack, setIsPlaying, isPlaying, handleStart, handleStop, togglePlay,}) => {
+export const AppRoutes = ({ user, isLoading, setIsLoading, isPlayerVisible, setIsPlayerVisible,
+    loadingTracksError, setIsPlaying, isPlaying, handleStart, handleStop, togglePlay,}) => {
     return(
         <Routes>
             <Route path="/login" element={<Login />}></Route>
@@ -21,14 +21,11 @@ export const AppRoutes = ({ user, tracks, setTracks, isLoading, setIsLoading, is
                     path="/"
                     element={
                         <MainPage
-                            tracks={tracks}
-                            setTracks={setTracks}
                             isLoading={isLoading}
                             setIsLoading={setIsLoading}
                             isPlayerVisible={isPlayerVisible}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
-                            setActiveTrack={setActiveTrack}
                             setIsPlaying={setIsPlaying}
                             isPlaying={isPlaying}
                             handleStart={handleStart}
