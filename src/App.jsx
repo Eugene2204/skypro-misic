@@ -15,13 +15,13 @@ export const App = () => {
   const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [isLoading, setIsLoading] = useState(true)
-    const [isPlayerVisible, setIsPlayerVisible] = useState(true)
+    const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
     const [userData, setUserData] = useState(
         JSON.parse(localStorage.getItem('user')) ?? 'Не авторизован',
     )
-
+    
     const audioRef = useRef(null)
 
     const handleStart = () => {

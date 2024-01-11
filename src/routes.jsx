@@ -8,24 +8,24 @@ import { PlaylistPage } from './pages/playlistPage/playlistPage.jsx';
 import { Protection } from './components/Protection/Protection.jsx';
 import React from 'react';
 
-export const AppRoutes = ({ user, isLoading, setIsLoading, isPlayerVisible, setIsPlayerVisible,
-    loadingTracksError, setLoadingTracksError, setIsPlaying, isPlaying, handleStart, handleStop, togglePlay,}) => {
+export const AppRoutes = ({ user, isLoading, setIsLoading,  setIsPlayerVisible, loadingTracksError, setLoadingTracksError,  playlist, setPlaylist }) => {
     return(
         <Routes>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/SignUp" element={<SignUp />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
             <Route element={<Protection isAllowed={Boolean(user)} />}>
-                <Route path="/favorites" element={<MyTracksPage />}></Route>
                 <Route
                     path="/favorites"
                     element={
                         <MyTracksPage
-                            isLoading={isLoading}
+                        isLoading={isLoading}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setIsLoading={setIsLoading}
                             setLoadingTracksError={setLoadingTracksError}
+                            playlist={playlist}
+                            setPlaylist={setPlaylist}
                         />
                     }
                 ></Route>
@@ -33,17 +33,13 @@ export const AppRoutes = ({ user, isLoading, setIsLoading, isPlayerVisible, setI
                     path="/"
                     element={
                         <MainPage
-                            isLoading={isLoading}
-                            setIsLoading={setIsLoading}
-                            isPlayerVisible={isPlayerVisible}
-                            setIsPlayerVisible={setIsPlayerVisible}
-                            loadingTracksError={loadingTracksError}
-                            setLoadingTracksError={setLoadingTracksError}
-                            setIsPlaying={setIsPlaying}
-                            isPlaying={isPlaying}
-                            handleStart={handleStart}
-                            handleStop={handleStop}
-                            togglePlay={togglePlay}
+                        isLoading={isLoading}
+                        setIsPlayerVisible={setIsPlayerVisible}
+                        loadingTracksError={loadingTracksError}
+                        setIsLoading={setIsLoading}
+                        setLoadingTracksError={setLoadingTracksError}
+                        playlist={playlist}
+                        setPlaylist={setPlaylist}
                         />
                     }
                 ></Route>

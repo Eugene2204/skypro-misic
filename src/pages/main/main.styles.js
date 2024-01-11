@@ -29,7 +29,7 @@ export const Main = styled.main`
     justify-content: space-between;
 `
 
-export const MainCenterBlock = styled.div`
+export const MainCenterblock = styled.div`
     width: auto;
     -webkit-box-flex: 3;
     -ms-flex-positive: 3;
@@ -73,33 +73,41 @@ export const SearchText = styled.input`
     font-size: 16px;
     line-height: 24px;
     color: #ffffff;
-    &::-webkit-input-placeholder {
-      background-color: transparent;
-      color: #ffffff;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+    &::placeholder {
+        background-color: transparent;
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
     }
     &::-ms-input-placeholder {
-      background-color: transparent;
-      color: #ffffff;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+        background-color: transparent;
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
     }
-    &::placeholder {
-      background-color: transparent;
-      color: #ffffff;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+    &:-ms-input-placeholder {
+        background-color: transparent;
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    &::-webkit-input-placeholder {
+        background-color: transparent;
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
     }
 `
 
-export const CenterblockH2 = styled.h2`
+export const CenterblockHeading = styled.h2`
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
@@ -135,7 +143,7 @@ export const ContentTitle = styled.div`
     margin-bottom: 24px;
 `
 
-export const PlayListTitleCol1 = styled.div`
+export const PlaylistTitle = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -143,44 +151,26 @@ export const PlayListTitleCol1 = styled.div`
     letter-spacing: 2px;
     color: #696969;
     text-transform: uppercase;
+`
+
+export const PlaylistTitleTrack = styled(PlaylistTitle)`
     width: 447px;
 `
 
-export const PlayListTitleCol2 = styled.div`
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 2px;
-    color: #696969;
-    text-transform: uppercase;
+export const PlaylistTitleAuthor = styled(PlaylistTitle)`
     width: 321px;
 `
 
-export const PlayListTitleCol3 = styled.div`
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 2px;
-    color: #696969;
-    text-transform: uppercase;
+export const PlaylistTitleAlbum = styled(PlaylistTitle)`
     width: 245px;
 `
 
-export const PlayListTitleCol4 = styled.div`
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 2px;
-    color: #696969;
-    text-transform: uppercase;
+export const PlaylistTitleImage = styled(PlaylistTitle)`
     width: 60px;
     text-align: end;
 `
 
-export const PlayListTitleSvg = styled.svg`
+export const PlaylistTitleSvg = styled.svg`
     width: 12px;
     height: 12px;
     fill: transparent;

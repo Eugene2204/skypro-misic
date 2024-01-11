@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     overflow: hidden;
     background-color: #383838;
 `
+
 export const Container = styled.div`
     max-width: 1920px;
     height: 100vh;

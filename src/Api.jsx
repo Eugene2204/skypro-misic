@@ -17,6 +17,30 @@ export async function getFavTracks() {
         },
     )
 }
+
+export async function getPlaylist(id) {
+    return fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/selection/${id}/`,
+        {
+            method: 'GET',
+        },
+    )
+        .then((response) => {
+            return response.json()
+        })
+        .then((response) => {
+            return response.items
+        })
+}
+
+export async function getTrack(id) {
+    return fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}`, {
+        method: 'GET',
+    }).then((response) => {
+        return response.json()
+    })
+}
+
 export async function setLike(id) {
     return fetch(
         `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
@@ -26,22 +50,7 @@ export async function setLike(id) {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
         },
-    ).then((response) => {
-        if (response.status === 401) {
-            refreshToken()
-                .then((response) => {
-                    return response.json()
-                })
-                .then((response) => {
-                    localStorage.setItem('accessToken', response.access)
-                })
-                .then(() => {
-                    setLike(id)
-                })
-        } else if (response.status !== 200) {
-            console.log('Произошла ошибка')
-        }
-    })
+    )
 }
 
 export async function removeLike(id) {
@@ -53,29 +62,14 @@ export async function removeLike(id) {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
         },
-    ).then((response) => {
-        if (response.status === 401) {
-            refreshToken()
-                .then((response) => {
-                    return response.json()
-                })
-                .then((response) => {
-                    localStorage.setItem('accessToken', response.access)
-                })
-                .then(() => {
-                    removeLike(id)
-                })
-        } else if (response.status !== 200) {
-            console.log('Произошла ошибка')
-        }
-    })
+    )
 }
 
-export async function getTrack(id) {
+/*export async function getTrack(id) {
     return fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}`, {
         method: 'GET',
     })
-}
+}*/
 export async function getToken({ email, password }) {
     return fetch('https://skypro-music-api.skyeng.tech/user/token/', {
         method: 'POST',

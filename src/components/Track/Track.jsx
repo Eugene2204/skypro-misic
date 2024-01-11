@@ -8,139 +8,140 @@ import * as S from './Track.styles.js';
 import { removeLike, setLike, refreshToken, getFavTracks, getAllTracks, } from '../../Api.jsx';
 import { setTracks } from '../../store/slices.jsx';
 
-export const Track = ({ track,  isLoading, playlist, setLoadingTracksError, setIsLoading, setIsPlayerVisible,}) => {
+export const Track = ({ track,setIsPlayerVisible,  isLoading, playlist, setLoadingTracksError, setIsLoading,}) => {
 
-  const dispatch = useDispatch()
-  const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const dispatch = useDispatch()
+    const activeTrack = useSelector((state) => state.tracks.activeTrack)
 
-  let isLiked = track?.stared_user?.some(
-      ({ username }) => username === JSON.parse(localStorage.getItem('user')),
-  )
-  if (playlist === 'fav') {
-      isLiked = true
-  }
+    let isLiked = track?.stared_user?.some(
+        ({ username }) => username === JSON.parse(localStorage.getItem('user')),
+    )
+    if (playlist === 'fav') {
+        isLiked = true
+    }
 
-  const handleLike = (id) => {
-      setLike(id)
-          .then(() => {
-              if (playlist === 'fav') {
-                  getFavTracks()
-                      .then((response) => {
-                          if (response.status === 401) {
-                              refreshToken()
-                                  .then((response) => {
-                                      return response.json()
-                                  })
-                                  .then((response) => {
-                                      localStorage.setItem(
-                                          'accessToken',
-                                          response.access,
-                                      )
-                                  })
-                                  .then(async () => {
-                                      const tracksResponse =
-                                          await getFavTracks()
-                                      return tracksResponse.json()
-                                  })
-                                  .then((tracks) => {
-                                      dispatch(setTracks({ tracks }))
-                                      setLoadingTracksError('')
-                                  })
-                          }
-                          return response.json()
-                      })
-                      .then((tracks) => {
-                          dispatch(setTracks({ tracks }))
-                      })
-                      .then(() => {
-                          setLoadingTracksError('')
-                          setIsLoading(false)
-                      })
-                      .catch((error) => {
-                          console.log(error)
-                      })
-              } else {
-                  getAllTracks()
-                      .then((tracks) => {
-                          dispatch(setTracks({ tracks }))
-                      })
-                      .then(() => {
-                        setLoadingTracksError && setLoadingTracksError('')
-                        setIsLoading && setIsLoading(false)
-                      })
-                      .catch((error) => {
-                          console.log(error)
-                      })
-              }
-          })
-  }
+    const handleLike = (id) => {
+        setLike(id)
+            .then(() => {
+                if (playlist === 'fav') {
+                    getFavTracks()
+                        .then((response) => {
+                            if (response.status === 401) {
+                                refreshToken()
+                                    .then((response) => {
+                                        return response.json()
+                                    })
+                                    .then((response) => {
+                                        localStorage.setItem(
+                                            'accessToken',
+                                            response.access,
+                                        )
+                                    })
+                                    .then(async () => {
+                                        const tracksResponse =
+                                            await getFavTracks()
+                                        return tracksResponse.json()
+                                    })
+                                    .then((tracks) => {
+                                        dispatch(setTracks({ tracks }))
+                                        setLoadingTracksError('')
+                                    })
+                            }
+                            return response.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else {
+                    getAllTracks()
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError && setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                }
+            })
+    }
 
-  const handleRemoveLike = (id) => {
-      removeLike(id)
-          .then(() => {
-              if (playlist === 'fav') {
-                  getFavTracks()
-                      .then((response) => {
-                          if (response.status === 401) {
-                              refreshToken()
-                                  .then((response) => {
-                                      return response.json()
-                                  })
-                                  .then((response) => {
-                                      localStorage.setItem(
-                                          'accessToken',
-                                          response.access,
-                                      )
-                                  })
-                                  .then(async () => {
-                                      const tracksResponse =
-                                          await getFavTracks()
-                                      return tracksResponse.json()
-                                  })
-                                  .then((tracks) => {
-                                      dispatch(setTracks({ tracks }))
-                                      setLoadingTracksError('')
-                                  })
-                          }
-                          return response.json()
-                      })
-                      .then((tracks) => {
-                          dispatch(setTracks({ tracks }))
-                      })
-                      .then(() => {
-                        setLoadingTracksError && setLoadingTracksError('')
-                        setIsLoading && setIsLoading(false)
-                      })
-                      .catch((error) => {
-                          console.log(error)
-                      })
-              } else {
-                  getAllTracks()
-                      .then((tracks) => {
-                          dispatch(setTracks({ tracks }))
-                      })
-                      .then(() => {
-                        setLoadingTracksError && setLoadingTracksError('')
-                        setIsLoading && setIsLoading(false)
-                      })
-                      .catch((error) => {
-                          console.log(error)
-                      })
-              }
-          })
-  }
+    const handleRemoveLike = (id) => {
+        removeLike(id)
+            .then(() => {
+                if (playlist === 'fav') {
+                    getFavTracks()
+                        .then((response) => {
+                            if (response.status === 401) {
+                                refreshToken()
+                                    .then((response) => {
+                                        return response.json()
+                                    })
+                                    .then((response) => {
+                                        localStorage.setItem(
+                                            'accessToken',
+                                            response.access,
+                                        )
+                                    })
+                                    .then(async () => {
+                                        const tracksResponse =
+                                            await getFavTracks()
+                                        return tracksResponse.json()
+                                    })
+                                    .then((tracks) => {
+                                        dispatch(setTracks({ tracks }))
+                                        setLoadingTracksError('')
+                                    })
+                            }
+                            return response.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else {
+                    getAllTracks()
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError  &&  setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                }
+            })
+    }
 
-  const handleLikeClick = (id) => {
-      isLiked ? handleRemoveLike(id) : handleLike(id)
-  }
-
+    const handleLikeClick = (id) => {
+        isLiked ? handleRemoveLike(id) : handleLike(id)
+    }
+    
     return (
-        <S.PlaylistItem  key={track.id}
+        <S.PlaylistItem   key={track.id}
         onClick={() => {
+            setIsPlayerVisible(true)
             dispatch(setCurrentPlaylist())
-            dispatch(setActiveTrack({ track }))
-            setIsPlayerVisible &&  setIsPlayerVisible(true)
+            dispatch(setActiveTrack({ track }))  
         }}>
+          
   <S.PlaylistTrack>
     <S.TrackTitle>
       <S.TrackTitleImage>

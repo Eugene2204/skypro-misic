@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "date-fns": "^3.1.0",
     "moment": "^2.29.4",
     "overlayscrollbars-react": "^0.5.3",
     "prop-types": "^15.8.1",
@@ -48,6 +49,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.53.0",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.1.1"
   }
 }

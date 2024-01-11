@@ -1,54 +1,40 @@
+import React from 'react';
 import * as S from './myTrack.styles.js';
 import { GlobalStyle } from '../../components/Global.styles/Global.styles.js';
-import React from 'react';
 import { NavMenu } from '../../components/navMenu/NavMenu.jsx';
 import { TrackList } from '../../components/trackList/TrackList.jsx';
 import { Sidebar } from '../../components/sidebar/sidebar.jsx';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { setTracks } from '../../store/slices.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { getFavTracks, refreshToken } from '../../Api.jsx';
+import { setTracks } from '../../store/slices.jsx';
 
-export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError, setIsLoading, setLoadingTracksError, }) => {
+export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError, setIsLoading, setLoadingTracksError, playlist, setPlaylist, }) => {
     
     const dispatch = useDispatch()
+    const tracks = useSelector((state) => state.tracks.tracks)
+    const [searchText, setSearchText] = useState('')
+
     useEffect(() => {
-        getFavTracks()
-            .then((response) => {
-                if (response.status === 401) {
-                    refreshToken()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            localStorage.setItem('accessToken', response.access)
-                        })
-                        .then(async () => {
-                            const tracksResponse = await getFavTracks()
-                            return tracksResponse.json()
-                        })
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                            setLoadingTracksError &&   setLoadingTracksError('')
-                        })
-                }
+        setPlaylist && setPlaylist('fav')
+        async function getTracks() {
+            let tracksResponse = await getFavTracks()
 
-                return response.json()
-            })
-            .then((tracks) => {
-                dispatch(setTracks({ tracks }))
-            })
-            .then(() => {
-                setLoadingTracksError && setLoadingTracksError('')
-                setIsLoading && setIsLoading(false)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [setLoadingTracksError, dispatch, setIsLoading])
+            if (tracksResponse.status === 401) {
+                const tokensResponse = await refreshToken()
+                const tokens = await tokensResponse.json()
+                localStorage.setItem('accessToken', tokens.access)
+                tracksResponse = await getFavTracks()
+            }
 
-    const playlist = 'fav'
-    
+            const tracks = await tracksResponse.json()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError && setLoadingTracksError('')
+            setIsLoading && setIsLoading(false)
+        }
+        getTracks()
+    }, [setLoadingTracksError, dispatch, setIsLoading, setPlaylist])
+
     return (
         <>
             <GlobalStyle />
@@ -65,6 +51,9 @@ export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError
                                     type="search"
                                     placeholder="Поиск"
                                     name="search"
+                                    onChange={(event) => {
+                                        setSearchText(event.target.value)
+                                    }}
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>
@@ -94,6 +83,8 @@ export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError
                                     setIsLoading,
                                     setLoadingTracksError,
                                     playlist,
+                                    searchText,
+                                    tracks,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
@@ -102,5 +93,5 @@ export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError
                 </S.Container>
             </S.Wrapper>
         </>
-          )
-        }
+    )
+}

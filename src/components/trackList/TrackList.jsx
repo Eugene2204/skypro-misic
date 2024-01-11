@@ -5,9 +5,9 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Track } from '../Track/Track.jsx';
 import { useSelector } from 'react-redux';
 
-export const TrackList = ({ isLoading, setIsPlayerVisible, loadingTracksError, playlist, setLoadingTracksError,setIsLoading, }) => {
+export const TrackList = ({  isLoading, setIsPlayerVisible, loadingTracksError, playlist, setLoadingTracksError, setIsLoading,}) => {
 
-  const tracks = useSelector((state) => state.tracks.tracks)
+      const tracks = useSelector((state) => state.tracks.tracks)
 
 return (
   <>
@@ -21,16 +21,15 @@ return (
  { tracks.map((track) => {
                 return (
                   <Track
-                        key={track.id}
-                        track={track}
-                        isLoading={isLoading}
-                        playlist={playlist}
-                        setIsPlayerVisible={setIsPlayerVisible}
-                        setLoadingTracksError={setLoadingTracksError}
-                        setIsLoading={setIsLoading}
+                  key={track.id}
+                  track={track}
+                  setIsPlayerVisible={setIsPlayerVisible}
+                  isLoading={isLoading}
+                  playlist={playlist}
+                  setLoadingTracksError={setLoadingTracksError}
+                  setIsLoading={setIsLoading}
               />
-               )
-              })}
+               )})}
               </S.ContentPlaylist>
               </OverlayScrollbarsComponent>
               </>
