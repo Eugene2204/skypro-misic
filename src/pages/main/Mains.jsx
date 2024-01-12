@@ -1,13 +1,13 @@
-import { NavMenu } from '../../components/navMenu/NavMenu.jsx'
-import { Sidebar } from '../../components/sidebar/sidebar.jsx'
-import { FilterButtons } from '../../components/popupMenuButtons/popupMenuButtons.jsx'
+import { NavMenu } from '../../components/navMenu/NavMenu.jsx';
+import { Sidebar } from '../../components/sidebar/sidebar.jsx';
+import { FilterButtons } from '../../components/popupMenuButtons/popupMenuButtons.jsx';
 import { TrackList } from '../../components/trackList/TrackList.jsx';
 import { GlobalStyle } from '../../components/Global.styles/Global.styles.js';
-import * as S from './main.styles.js'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { setTracks } from '../../store/slices.jsx'
-import { getAllTracks } from '../../Api.jsx'
+import * as S from './main.styles.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setTracks } from '../../store/slices.jsx';
+import { getAllTracks } from '../../Api.jsx';
 import React from 'react';
 
 export const MainPage = ({

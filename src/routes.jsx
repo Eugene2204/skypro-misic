@@ -19,7 +19,7 @@ export const AppRoutes = ({ user, isLoading, setIsLoading,  setIsPlayerVisible, 
                     path="/favorites"
                     element={
                         <MyTracksPage
-                        isLoading={isLoading}
+                            isLoading={isLoading}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setIsLoading={setIsLoading}

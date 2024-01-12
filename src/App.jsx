@@ -11,9 +11,10 @@ import { setTracks } from './store/slices.jsx'
 
 
 export const App = () => {
-
+  
   const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const [playlist, setPlaylist] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
@@ -69,12 +70,16 @@ export const App = () => {
                            setIsPlayerVisible={setIsPlayerVisible}
                            loadingTracksError={loadingTracksError}
                            togglePlay={togglePlay}
+                           playlist={playlist}
+                           setPlaylist={setPlaylist}
                         />
                         {AudioPlayer({ audioRef,
                                 togglePlay,
                                 isPlaying,
                                 isPlayerVisible,
-                                isLoading, })}
+                                isLoading,
+                                playlist,
+                                setPlaylist, })}
                     </>
       </S.Container>
     </S.Wrapper>

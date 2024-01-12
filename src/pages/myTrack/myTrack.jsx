@@ -9,8 +9,15 @@ import { useEffect, useState } from 'react';
 import { getFavTracks, refreshToken } from '../../Api.jsx';
 import { setTracks } from '../../store/slices.jsx';
 
-export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError, setIsLoading, setLoadingTracksError, playlist, setPlaylist, }) => {
-    
+export const MyTracksPage = ({
+    isLoading,
+    setIsPlayerVisible,
+    loadingTracksError,
+    setIsLoading,
+    setLoadingTracksError,
+    playlist,
+    setPlaylist,
+}) => {
     const dispatch = useDispatch()
     const tracks = useSelector((state) => state.tracks.tracks)
     const [searchText, setSearchText] = useState('')
@@ -30,7 +37,7 @@ export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError
             const tracks = await tracksResponse.json()
             dispatch(setTracks({ tracks }))
             setLoadingTracksError && setLoadingTracksError('')
-            setIsLoading && setIsLoading(false)
+            setIsLoading(false)
         }
         getTracks()
     }, [setLoadingTracksError, dispatch, setIsLoading, setPlaylist])
@@ -41,7 +48,7 @@ export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError
             <S.Wrapper>
                 <S.Container>
                     <S.Main>
-                        {NavMenu()}
+                        {NavMenu({ setIsPlayerVisible })}
                         <S.MainCenterblock>
                             <S.CenterblockSearch>
                                 <S.SearchSvg>
@@ -88,7 +95,7 @@ export const MyTracksPage = ({ isLoading, setIsPlayerVisible, loadingTracksError
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
-                        {Sidebar({ isLoading })}
+                        {Sidebar({ isLoading, setIsPlayerVisible })}
                     </S.Main>
                 </S.Container>
             </S.Wrapper>

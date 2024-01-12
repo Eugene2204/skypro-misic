@@ -33,6 +33,4 @@ return (
               </S.ContentPlaylist>
               </OverlayScrollbarsComponent>
               </>
-      )
-}
-
+)}
