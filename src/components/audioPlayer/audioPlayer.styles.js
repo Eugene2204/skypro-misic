@@ -10,6 +10,7 @@ export const TrackTime = styled.div`
     line-height: 24px;
     text-align: right;
     color: #fff;
+    
 `
 
 export const Bar = styled.div`
