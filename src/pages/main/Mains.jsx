@@ -15,16 +15,16 @@ export const MainPage = ({ isLoading, setIsPlayerVisible,
   setIsLoading,
   setLoadingTracksError,
   playlist,
-  setPlaylist,}) => {
+  setPlaylist}) => {
 
-  const tracks = useSelector((state) => state.tracks.tracks)
-  const dispatch = useDispatch()
+    const tracks = useSelector((state) => state.tracks.tracks)
+    const dispatch = useDispatch()
   
-  const [searchText, setSearchText] = useState('')
-  const [selectedAuthors, setSelectedAuthors] = useState([])
+    const [searchText, setSearchText] = useState('')
+    const [selectedAuthors, setSelectedAuthors] = useState([])
     const [selectedGenres, setSelectedGenres] = useState([])
     const [selectedSort, setSelectedSort] = useState('По умолчанию')
-
+    
   useEffect(() => {
     setPlaylist && setPlaylist('main')
       getAllTracks()

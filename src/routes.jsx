@@ -4,7 +4,7 @@ import { SignUp } from './pages/signUp/SignUp.jsx';
 import { MainPage } from './pages/main/Mains.jsx';
 import { NotFoundPage } from './pages/NotFound/NotFound.jsx';
 import { MyTracksPage } from './pages/myTrack/myTrack.jsx';
-import { PlaylistPage } from './pages/playlistPage/playlistPage.jsx';
+import { CategoryPage } from './pages/Categories/CategoryPage.jsx'
 import { Protection } from './components/Protection/Protection.jsx';
 import React from 'react';
 
@@ -43,7 +43,20 @@ export const AppRoutes = ({ user, isLoading, setIsLoading,  setIsPlayerVisible, 
                         />
                     }
                 ></Route>
-                <Route path="/category/:id" element={<PlaylistPage />}></Route>
+                <Route
+                    path="/category/:id"
+                    element={
+                        <CategoryPage
+                            isLoading={isLoading}
+                            setIsPlayerVisible={setIsPlayerVisible}
+                            loadingTracksError={loadingTracksError}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
+                            playlist={playlist}
+                            setPlaylist={setPlaylist}
+                        />
+                    }
+                ></Route>
             </Route>
         </Routes>
     )}

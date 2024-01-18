@@ -167,7 +167,7 @@ export const Track = ({ track,setIsPlayerVisible,isLoading, playlist, setLoading
         <S.ActiveTrack />
 ) : (     
         <S.TrackTitleSvg alt="music">
-           <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+           <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
         </S.TrackTitleSvg>
           )}  
       </S.TrackTitleImage>
@@ -211,7 +211,7 @@ export const Track = ({ track,setIsPlayerVisible,isLoading, playlist, setLoading
                                 event.stopPropagation()
                                 handleLikeClick(track.id)
                             }}>
-        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+        <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
       </S.TrackTimeSvg>
       <S.TrackTimeText> {ConvertTime(
                                 track.duration_in_seconds,

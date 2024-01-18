@@ -8,11 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../Authorization.jsx';
 
-export const Sidebar = ({isLoading}) => {
+export const Sidebar = ({isLoading, setIsPlayerVisible }) => {
   
   const navigate = useNavigate()
   const handleLogout = () => {
       localStorage.removeItem('user')
+      setIsPlayerVisible(false)
       navigate('/login')
   }
 
@@ -52,7 +53,7 @@ return (
               <S.SidebarPersonalName>{userData ?? 'Не авторизован'}</S.SidebarPersonalName>
               <S.SidebarIcon onClick={handleLogout}>
                 <svg alt="logout">
-                  <use xlinkHref="img/icon/sprite.svg#logout"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#logout"></use>
                 </svg>
               </S.SidebarIcon>
             </S.SidebarPersonal>

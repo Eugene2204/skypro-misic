@@ -10,7 +10,7 @@ export const TrackList = ({searchText, isLoading, setIsPlayerVisible, loadingTra
 
       const tracks = useSelector((state) => state.tracks.tracks)
 
-      const filtredCountries = () => {
+        const filtredCountries = () => {
         let allTracks = tracks
 
         if (searchText && searchText.split('').length > 0) {

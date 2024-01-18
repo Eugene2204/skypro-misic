@@ -7,6 +7,7 @@ export const NavMenu = () => {
   
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
+  
   const navigate = useNavigate()
   const onClick = () => {
       const user = localStorage.getItem('user')
@@ -20,7 +21,7 @@ export const NavMenu = () => {
     return(
         <S.MainNav>
             <S.NavLogo>
-              <S.LogoImg className="_btn" src="img/logo.png" alt="logo" onClick={() => navigate('/')} />
+              <S.LogoImg className="_btn" src="/img/logo.png" alt="logo" onClick={() => navigate('/')} />
             </S.NavLogo>
             <S.NavBurger className="_btn" onClick={toggleVisibility}>
               <S.BurgerLine></S.BurgerLine>

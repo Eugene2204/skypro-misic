@@ -198,7 +198,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   <S.BtnPrev>
                     <S.PlayerBtnPrevSvg alt="prev" onClick={() =>
                                                 dispatch(playPrevTrack())}>
-                      <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                     </S.PlayerBtnPrevSvg>
                   </S.BtnPrev>
                   <S.PlayerBtnPlay>
@@ -232,7 +232,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   </S.PlayerBtnPlay>
                   <S.PlayerBtnNext>
                     <S.PlayerBtnNextSvg   onClick={() => dispatch(playNextTrack())} alt="next">
-                      <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                     </S.PlayerBtnNextSvg>
                   </S.PlayerBtnNext>
                   <S.PlayerBtnRepeat>
@@ -279,7 +279,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   <S.PlayerBtnShuffle>
                     <S.PlayerBtnShuffleSvg  $isshuffled={isShuffled}
                                             onClick={() => { dispatch(setIsShuffled())}} alt="shuffle">
-                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerBtnShuffleSvg>
                   </S.PlayerBtnShuffle>
                 </S.PlayerControls>
@@ -297,7 +297,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                       <S.TrackPlaySvg alt="music">
                         {activeTrack ? ( activeTrack.logo
                                                 ) : (
-                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                         )}
                       </S.TrackPlaySvg>
                                     )}                           
@@ -331,7 +331,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                                 event.stopPropagation()
                                 handleLike(activeTrack.id)
                             }} >
-                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                       </S.TrackPlayLikeSvg>
                     </S.TrackPlayLike>
                     <S.TrackPlayDislike>
@@ -339,7 +339,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                                 event.stopPropagation()
                                 handleRemoveLike(activeTrack.id)
                             }}>
-                        <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                       </S.TrackPlayDislikeSvg>
                     </S.TrackPlayDislike>
                   </S.TrackPlayLikeDis>

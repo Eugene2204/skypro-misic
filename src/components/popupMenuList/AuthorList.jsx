@@ -16,7 +16,7 @@ export const AuthorList = ({ tracks, selectedAuthors, setSelectedAuthors }) => {
     const clickOnAuthor = (author) => {
         if (selectedAuthors.includes(author)) {
             const authors = selectedAuthors.filter((selectedAuthor) => {
-                return selectedAuthor !== author
+                return selectedAuthor !== author 
                 
             })
 
