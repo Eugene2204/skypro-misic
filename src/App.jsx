@@ -6,9 +6,8 @@ import { AudioPlayer } from './components/audioPlayer/audioPlayer.jsx';
 import { useState, useEffect, useRef } from 'react';
 import { getAllTracks } from './Api.jsx'
 import { UserContext } from './Authorization.jsx';
-import { useDispatch, useSelector } from 'react-redux'
-import { setTracks } from './store/slices.jsx'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setTracks } from './store/slices.jsx';
 
 export const App = () => {
   
@@ -72,14 +71,20 @@ export const App = () => {
                            togglePlay={togglePlay}
                            playlist={playlist}
                            setPlaylist={setPlaylist}
+                           setLoadingTracksError={setLoadingTracksError}
                         />
-                        {AudioPlayer({ audioRef,
+                        {AudioPlayer({ 
+                                audioRef,
                                 togglePlay,
                                 isPlaying,
                                 isPlayerVisible,
                                 isLoading,
                                 playlist,
-                                setPlaylist, })}
+                                setPlaylist,
+                                setLoadingTracksError,
+                                setIsLoading,
+                                })}
+                              
                     </>
       </S.Container>
     </S.Wrapper>

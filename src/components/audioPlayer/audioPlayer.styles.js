@@ -318,7 +318,7 @@ export const TrackPlayLikeSvg = styled.svg`
     width: 14px;
     height: 12px;
     fill: transparent;
-    stroke: #696969;
+    stroke: ${(props) => (props.$isLiked ? '#B672FF' : '#696969')};
 `
 
 export const TrackPlayDislike = styled.div`
@@ -332,6 +332,7 @@ export const TrackPlayDislikeSvg = styled.svg`
     height: 13px;
     fill: transparent;
     stroke: #696969;
+    
 `
 
 export const BarVolumeBlock = styled.div`

@@ -65,11 +65,6 @@ export async function removeLike(id) {
     )
 }
 
-/*export async function getTrack(id) {
-    return fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}`, {
-        method: 'GET',
-    })
-}*/
 export async function getToken({ email, password }) {
     return fetch('https://skypro-music-api.skyeng.tech/user/token/', {
         method: 'POST',
