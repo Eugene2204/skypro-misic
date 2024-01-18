@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
+import 'overlayscrollbars/overlayscrollbars.css';
 
 export const Wrapper = styled.div`
         width: 100%;
@@ -95,11 +96,14 @@ export const MainNav = styled.div`
 `
 
 export const MainCenterBlock = styled.div`
+    height: 500px;
     width: auto;
     -webkit-box-flex: 3;
     -ms-flex-positive: 3;
     flex-grow: 3;
     padding: 20px 40px 20px 111px;
+    
+    
 `
 
 export const CenterblockSearch = styled.div`
@@ -178,10 +182,16 @@ export const SidebarIcon = styled.div`
 `
 
 export const TitelNotfound = styled.div`
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 356px;
+    margin-top: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-right: 20px;
 `
 
 export const TitelNotfoundErrorText = styled.h1`

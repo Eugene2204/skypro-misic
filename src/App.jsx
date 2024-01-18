@@ -4,15 +4,11 @@ import * as S from './App.styles.js';
 import { AppRoutes } from './routes.jsx';
 import { AudioPlayer } from './components/audioPlayer/audioPlayer.jsx';
 import { useState, useEffect, useRef } from 'react';
-import { getAllTracks } from './Api.jsx'
 import { UserContext } from './Authorization.jsx';
-import { useDispatch, useSelector } from 'react-redux'
-import { setTracks } from './store/slices.jsx'
-
+import {  useSelector } from 'react-redux';
 
 export const App = () => {
   
-  const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [playlist, setPlaylist] = useState('')
     const [isLoading, setIsLoading] = useState(true)
@@ -43,18 +39,6 @@ export const App = () => {
         }
     }, [activeTrack])
 
-    useEffect(() => {
-        getAllTracks()
-            .then((tracks) => {
-                dispatch(setTracks({ tracks }))
-            })
-            .catch((error) => {
-                setLoadingTracksError(error.message)
-            })
-            .finally(() => setIsLoading(false))
-    }, [dispatch])
-
-
   return (
   <>
     <GlobalStyle />
@@ -72,18 +56,22 @@ export const App = () => {
                            togglePlay={togglePlay}
                            playlist={playlist}
                            setPlaylist={setPlaylist}
+                           setLoadingTracksError={setLoadingTracksError}
                         />
-                        {AudioPlayer({ audioRef,
+                        {AudioPlayer({ 
+                                audioRef,
                                 togglePlay,
                                 isPlaying,
                                 isPlayerVisible,
                                 isLoading,
                                 playlist,
-                                setPlaylist, })}
+                                setPlaylist,
+                                setLoadingTracksError,
+                                setIsLoading,
+                                })} 
                     </>
       </S.Container>
     </S.Wrapper>
     </UserContext.Provider>
     </>
-  )
-}
+  )}

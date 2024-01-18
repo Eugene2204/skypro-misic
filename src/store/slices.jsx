@@ -47,6 +47,7 @@ const trackSlice = createSlice({
                 state.activeTrack = playlist[indexCurrentTrack + 1]
             }
         },
+        
         playPrevTrack(state) {
             const playlist = state.isShuffled
                 ? state.shuffledTracks

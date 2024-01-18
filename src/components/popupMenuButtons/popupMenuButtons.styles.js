@@ -45,3 +45,18 @@ export const FilterButton = styled.div`
         props.$isActive ? '1px solid #ad61ff' : '1px solid #ffffff'};
     color: ${(props) => (props.$isActive ? '#ad61ff' : '')};
 `
+
+export const FilterCounter = styled.div`
+    width: 26px;
+    height: 26px;
+    border-radius: 45px;
+    background-color: #ad61ff;
+    color: #fff;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`

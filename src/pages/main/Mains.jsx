@@ -5,23 +5,26 @@ import { TrackList } from '../../components/trackList/TrackList.jsx';
 import { GlobalStyle } from '../../components/Global.styles/Global.styles.js';
 import * as S from './main.styles.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setTracks } from '../../store/slices.jsx';
 import { getAllTracks } from '../../Api.jsx';
 import React from 'react';
 
-export const MainPage = ({
-  isLoading,
-  setIsPlayerVisible,
+export const MainPage = ({ isLoading, setIsPlayerVisible,
   loadingTracksError,
   setIsLoading,
   setLoadingTracksError,
   playlist,
-  setPlaylist,
-}) => {
-  const tracks = useSelector((state) => state.tracks.tracks)
-  const dispatch = useDispatch()
+  setPlaylist}) => {
 
+    const tracks = useSelector((state) => state.tracks.tracks)
+    const dispatch = useDispatch()
+  
+    const [searchText, setSearchText] = useState('')
+    const [selectedAuthors, setSelectedAuthors] = useState([])
+    const [selectedGenres, setSelectedGenres] = useState([])
+    const [selectedSort, setSelectedSort] = useState('По умолчанию')
+    
   useEffect(() => {
     setPlaylist && setPlaylist('main')
       getAllTracks()
@@ -49,16 +52,23 @@ export const MainPage = ({
                               <S.SearchSvg>
                                   <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
                               </S.SearchSvg>
-                              <S.SearchText
+                              
+                              <S.SearchText 
                                   type="search"
                                   placeholder="Поиск"
                                   name="search"
+                                  onChange={(event) => setSearchText(event.target.value)}
                               />
                           </S.CenterblockSearch>
                           <S.CenterblockHeading>Треки</S.CenterblockHeading>
                           {FilterButtons({
                               tracks,
-                              
+                              selectedAuthors,
+                                setSelectedAuthors,
+                                selectedGenres,
+                                setSelectedGenres,
+                                selectedSort,
+                                setSelectedSort,
                           })}
                           <S.CenterblockContent>
                               <S.ContentTitle>
@@ -84,9 +94,11 @@ export const MainPage = ({
                                   setIsLoading,
                                   setLoadingTracksError,
                                   playlist,
-                                  
                                   tracks,
-                                  
+                                  searchText,
+                                  selectedAuthors,
+                                  selectedGenres,
+                                  selectedSort,
                               })}
                           </S.CenterblockContent>
                       </S.MainCenterblock>

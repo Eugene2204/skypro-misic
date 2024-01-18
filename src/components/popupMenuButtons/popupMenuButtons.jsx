@@ -1,76 +1,114 @@
 import { useState } from 'react';
 import { AuthorList } from '../popupMenuList/AuthorList.jsx';
-import { YearList } from '../popupMenuList/YearList.jsx';
+import { DateList } from '../popupMenuList/DateList.jsx';
 import { GenreList } from '../popupMenuList/GenreList.jsx';
 import React from 'react';
 import * as S from './popupMenuButtons.styles.js';
 
-export const FilterButtons = () => {
+export const FilterButtons = ({ selectedAuthors, tracks, setSelectedAuthors, selectedGenres, setSelectedGenres, selectedSort, setSelectedSort}) => {
+
+    const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
+    const [isActiveDateButton, setIsActiveDateButton] = useState(false)
+    const [isActiveGenreButton, setIsActiveGenreButton] = useState(false)
+
     const [activeAuthor, setActiveAuthor] = useState(false)
-    const [activeYear, setActiveYear] = useState(false)
+    const [activeDate, setActiveDate] = useState(false)
     const [activeGenre, setActiveGenre] = useState(false)
 
     const [visibleAuthor, setVisibleAuthor] = useState(false)
-    const [visibleYear, setVisibleYear] = useState(false)
+    const [visibleDate, setVisibleDate] = useState(false)
     const [visibleGenre, setVisibleGenre] = useState(false)
 
     const clickOnAuthorFilter = () => {
+        setIsActiveAuthorButton(!isActiveAuthorButton)
+        setIsActiveDateButton(false)
+        setIsActiveGenreButton(false)
+
         setActiveAuthor(!activeAuthor)
-        setActiveYear(false)
+        setActiveDate(false)
         setActiveGenre(false)
 
         setVisibleAuthor(!visibleAuthor)
-        setVisibleYear(false)
+        setVisibleDate(false)
         setVisibleGenre(false)
     }
-    const clickOnYearFilter = () => {
+    const clickOnDateFilter = () => {
+        setIsActiveAuthorButton(false)
+        setIsActiveDateButton(!isActiveDateButton)
+        setIsActiveGenreButton(false)
+
         setActiveAuthor(false)
-        setActiveYear(!activeYear)
+        setActiveDate(!activeDate)
         setActiveGenre(false)
 
-        setVisibleYear(!visibleYear)
+        setVisibleDate(!visibleDate)
         setVisibleAuthor(false)
         setVisibleGenre(false)
     }
     const clickOnGenreFilter = () => {
+        setIsActiveAuthorButton(false)
+        setIsActiveDateButton(false)
+        setIsActiveGenreButton(!isActiveGenreButton)
+
         setActiveAuthor(false)
-        setActiveYear(false)
+        setActiveDate(false)
         setActiveGenre(!activeGenre)
 
         setVisibleGenre(!visibleGenre)
         setVisibleAuthor(false)
-        setVisibleYear(false)
+        setVisibleDate(false)
     }
 
     return (
         <S.CenterblockFilter>
              <S.FilterTitle>Искать по:</S.FilterTitle>
-             <S.FilterContent className="filter__content">
+             <S.FilterContent>
+             {selectedAuthors.length > 0 && (
+                        <S.FilterCounter>
+                            {selectedAuthors.length}
+                        </S.FilterCounter>
+                    )}
                 <S.FilterButton
-                    $isActive={activeAuthor}
+                    $isActive={isActiveAuthorButton}
                     onClick={clickOnAuthorFilter}
                 >
                     исполнителю
                 </S.FilterButton>
-                {visibleAuthor && <AuthorList />}
+                {visibleAuthor && AuthorList({
+                            tracks,
+                            selectedAuthors,
+                            setSelectedAuthors,
+                        })}
             </S.FilterContent>
-            <S.FilterContent className="filter__content">
+            <S.FilterContent>
                 <S.FilterButton
-                    $isActive={activeYear}
-                    onClick={clickOnYearFilter}
+                    $isActive={isActiveDateButton}
+                    onClick={clickOnDateFilter}
                 >
                     году выпуска
                 </S.FilterButton>
-                {visibleYear && <YearList />}
+                {visibleDate && DateList({
+                            selectedSort,
+                            setSelectedSort,
+                        })}
             </S.FilterContent>
-            <S.FilterContent className="filter__content">
+            <S.FilterContent>
+            {selectedGenres.length > 0 && (
+                        <S.FilterCounter>
+                            {selectedGenres.length}
+                        </S.FilterCounter>
+                    )}
                 <S.FilterButton
-                   $isActive={activeGenre}
+                   $isActive={isActiveGenreButton}
                     onClick={clickOnGenreFilter}
                 >
                     жанру
                 </S.FilterButton>
-                {visibleGenre && <GenreList />}
+                {visibleGenre && GenreList({
+                            tracks,
+                            selectedGenres,
+                            setSelectedGenres,
+                        })}
             </S.FilterContent>
         </S.CenterblockFilter>
     )

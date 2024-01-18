@@ -5,9 +5,10 @@ import * as S from './audioPlayer.styles.js';
 import { useState,  useRef } from 'react';
 import { ConvertTime, FunctionMissing } from '../../helpers.jsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { playNextTrack, playPrevTrack, setIsShuffled } from '../../store/slices.jsx';
+import { playNextTrack, playPrevTrack, setIsShuffled,setTracks } from '../../store/slices.jsx';
+import { removeLike, setLike, refreshToken, getFavTracks, getAllTracks, } from '../../Api.jsx';
 
-export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, isPlaying, }) => {
+export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, isPlaying,playlist,setLoadingTracksError,setIsLoading }) => {
 
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
@@ -31,6 +32,136 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
     }
 
     const toggleLoop = isLooped ? handleUnloop : handleLoop
+
+    let isLiked = activeTrack?.stared_user?.some(
+      ({ username }) => username === JSON.parse(localStorage.getItem('user')),
+  )
+  if (!activeTrack.stared_user) {
+      isLiked = true
+  }
+
+  let handleLike = (id) => {
+      setLike(id)
+          .then(() => {
+              if (playlist === 'fav') {
+              getFavTracks()
+
+              .then((response) => {
+              if (response.status === 401) {
+              refreshToken()
+              .then((response) => {
+              return response.json()
+              })
+
+              .then((response) => {
+              localStorage.setItem(
+              'accessToken',
+               response.access,
+              )})
+                                  
+              .then(async () => {
+              const tracksResponse =
+              await getFavTracks()
+              return tracksResponse.json()
+              })
+
+              .then((tracks) => {
+              dispatch(setTracks({ tracks }))
+              setLoadingTracksError('')
+              })}
+              return response.json()
+              })
+                      
+              .then((tracks) => {
+              dispatch(setTracks({ tracks }))
+              })
+                      
+              .then(() => {
+              setLoadingTracksError('')
+              setIsLoading(false)
+               })
+                      
+               .catch((error) => {
+              console.log(error)
+              })
+              } else {
+              getAllTracks()
+                      
+              .then((tracks) => {
+              dispatch(setTracks({ tracks }))
+              })
+              .then(() => {
+              setLoadingTracksError && setLoadingTracksError('')
+              setIsLoading && setIsLoading(false)
+              })
+                      
+              .catch((error) => {
+              console.log(error)
+              })}
+          })}
+
+  let handleRemoveLike = (id) => {
+      removeLike(id)
+          .then(() => {
+              if (playlist === 'fav') {
+              getFavTracks()
+              
+              .then((response) => {
+              if (response.status === 401) {
+              refreshToken()
+                                  
+              .then((response) => {
+              return response.json()
+              })
+              
+              .then((response) => {
+              localStorage.setItem(
+              'accessToken',
+              response.access,
+              )})
+                                  
+              .then(async () => {
+              const tracksResponse =
+              await getFavTracks()
+              return tracksResponse.json()
+              })
+                                  
+              .then((tracks) => {
+              dispatch(setTracks({ tracks }))
+              setLoadingTracksError('')
+              })}
+              return response.json()
+              })
+                      
+              .then((tracks) => {
+              dispatch(setTracks({ tracks }))
+              })
+                      
+              .then(() => {
+              setLoadingTracksError && setLoadingTracksError('')
+              setIsLoading(false)
+              })
+                      
+              .catch((error) => {
+              console.log(error)
+              })
+              } else {
+              getAllTracks()
+                      
+              .then((tracks) => {
+              dispatch(setTracks({ tracks }))
+              })
+                      
+              .then(() => {
+              setLoadingTracksError  &&  setLoadingTracksError('')
+              setIsLoading && setIsLoading(false)
+              })
+                      
+              .catch((error) => {
+              console.log(error)
+              })}
+          })
+  }
 
     return (
       isPlayerVisible && (
@@ -67,7 +198,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   <S.BtnPrev>
                     <S.PlayerBtnPrevSvg alt="prev" onClick={() =>
                                                 dispatch(playPrevTrack())}>
-                      <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                     </S.PlayerBtnPrevSvg>
                   </S.BtnPrev>
                   <S.PlayerBtnPlay>
@@ -101,7 +232,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   </S.PlayerBtnPlay>
                   <S.PlayerBtnNext>
                     <S.PlayerBtnNextSvg   onClick={() => dispatch(playNextTrack())} alt="next">
-                      <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                     </S.PlayerBtnNextSvg>
                   </S.PlayerBtnNext>
                   <S.PlayerBtnRepeat>
@@ -148,7 +279,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   <S.PlayerBtnShuffle>
                     <S.PlayerBtnShuffleSvg  $isshuffled={isShuffled}
                                             onClick={() => { dispatch(setIsShuffled())}} alt="shuffle">
-                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerBtnShuffleSvg>
                   </S.PlayerBtnShuffle>
                 </S.PlayerControls>
@@ -166,7 +297,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                       <S.TrackPlaySvg alt="music">
                         {activeTrack ? ( activeTrack.logo
                                                 ) : (
-                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                         )}
                       </S.TrackPlaySvg>
                                     )}                           
@@ -194,13 +325,21 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, audioRef, togglePlay, 
                   </S.TrackPlayContain>
                   <S.TrackPlayLikeDis>
                     <S.TrackPlayLike>
-                      <S.TrackPlayLikeSvg onClick={FunctionMissing} alt="like">
-                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      <S.TrackPlayLikeSvg $isLiked={isLiked}
+                            alt="like"
+                            onClick={(event) => {
+                                event.stopPropagation()
+                                handleLike(activeTrack.id)
+                            }} >
+                        <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                       </S.TrackPlayLikeSvg>
                     </S.TrackPlayLike>
                     <S.TrackPlayDislike>
-                      <S.TrackPlayDislikeSvg onClick={FunctionMissing} alt="dislike">
-                        <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                      <S.TrackPlayDislikeSvg alt="dislike" onClick={(event) => {
+                                event.stopPropagation()
+                                handleRemoveLike(activeTrack.id)
+                            }}>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                       </S.TrackPlayDislikeSvg>
                     </S.TrackPlayDislike>
                   </S.TrackPlayLikeDis>

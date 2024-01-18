@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { ConvertTime } from '../../helpers.jsx';
-import { setActiveTrack, setCurrentPlaylist } from '../../store/slices.jsx';
+import { setActiveTrack, setCurrentPlaylist, setTracks } from '../../store/slices.jsx';
 import * as S from './Track.styles.js';
 import { removeLike, setLike, refreshToken, getFavTracks, getAllTracks, } from '../../Api.jsx';
-import { setTracks } from '../../store/slices.jsx';
 
-export const Track = ({ track,setIsPlayerVisible,  isLoading, playlist, setLoadingTracksError, setIsLoading,}) => {
-
+export const Track = ({ track,setIsPlayerVisible,isLoading, playlist, setLoadingTracksError, setIsLoading,}) => {
+  
     const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
 
@@ -146,7 +145,7 @@ export const Track = ({ track,setIsPlayerVisible,  isLoading, playlist, setLoadi
     const handleLikeClick = (id) => {
         isLiked ? handleRemoveLike(id) : handleLike(id)
     }
-    
+  
     return (
         <S.PlaylistItem   key={track.id}
         onClick={() => {
@@ -168,7 +167,7 @@ export const Track = ({ track,setIsPlayerVisible,  isLoading, playlist, setLoadi
         <S.ActiveTrack />
 ) : (     
         <S.TrackTitleSvg alt="music">
-           <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+           <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
         </S.TrackTitleSvg>
           )}  
       </S.TrackTitleImage>
@@ -178,7 +177,7 @@ export const Track = ({ track,setIsPlayerVisible,  isLoading, playlist, setLoadi
                 baseColor="#202020"
                 highlightColor="#444"/>
             ) : (
-        <S.TrackTitleLink  >
+        <S.TrackTitleLink>
         {track.name} 
         <S.TrackTitleSpan></S.TrackTitleSpan>
         </S.TrackTitleLink>
@@ -212,7 +211,7 @@ export const Track = ({ track,setIsPlayerVisible,  isLoading, playlist, setLoadi
                                 event.stopPropagation()
                                 handleLikeClick(track.id)
                             }}>
-        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+        <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
       </S.TrackTimeSvg>
       <S.TrackTimeText> {ConvertTime(
                                 track.duration_in_seconds,
